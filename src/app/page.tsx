@@ -8,7 +8,7 @@ import Script from "next/script";
 
 export default function Homepage() {
   return (
-    <div className=" ">
+    <div className="  ">
       <Hero />
       <Features />
       <Script src="https://public.bnbstatic.com/unpkg/growth-widget/cryptoCurrencyWidget@0.0.9.min.js"></Script>
