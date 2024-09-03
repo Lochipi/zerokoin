@@ -131,7 +131,7 @@ export default function Swap({ swapType }: SwapProps) {
         thousandSeparator=","
         rightSectionWidth="fit"
         rightSection={
-          <SelectToken isKenyanShilling supportedTokens={["KES"]} />
+          <SelectToken isKenyanShilling supportedTokens={["KES", "NGN"]} />
         }
         size="xl"
         className=" w-full text-xs"
@@ -181,14 +181,15 @@ export default function Swap({ swapType }: SwapProps) {
       />
       <Select
         value={settlementBlockchain?.toString()}
-        defaultValue={"OP SEPOLIA"}
+        defaultValue={"LISK NETWORK"}
         onChange={(val) =>
           val ? setSettlementBlockchain(parseInt(val)) : null
         }
         data={[
-          { value: "42161", label: "ARBITRUM ONE" },
-          { value: "10", label: "OPTIMISM" },
-          { value: "56", label: "BNB SMART CHAIN" },
+          {
+            value: "1135",
+            label: "LISK NETWORK",
+          },
           {
             value: "11155420",
             label: "OP SEPOLA",

@@ -3,6 +3,8 @@ export function getBlockchainName(chainId: number): string {
     return "ARBITRUM ONE";
   } else if (chainId === 10) {
     return "OPTIMISM";
+  } else if (chainId === 1135) {
+    return "LISK NETWORK";
   } else if (chainId === 56) {
     return "BNB SMART CHAIN";
   } else if (chainId === 11155420) {

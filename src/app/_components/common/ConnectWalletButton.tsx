@@ -28,13 +28,7 @@ export const ConnectWalletButton = ({
       <ConnectButton
         client={thirdwebFrontendClient}
         chain={optimismSepolia}
-        chains={[
-          optimism,
-          optimismSepolia,
-          arbitrum,
-          defineChain(204),
-          defineChain(56),
-        ]}
+        chains={[optimismSepolia, defineChain(1135)]}
         wallets={[
           embeddedWallet(),
           createWallet("com.binance"),

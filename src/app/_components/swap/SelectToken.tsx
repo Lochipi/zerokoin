@@ -6,7 +6,7 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import { useSnapshot } from "valtio";
 
 interface SelectTokenProps {
-  supportedTokens: ("KES" | "USDT" | "USDC")[];
+  supportedTokens: ("KES" | "NGN" | "USDT" | "USDC")[];
   isKenyanShilling?: boolean;
 }
 export default function SelectToken({
@@ -17,11 +17,13 @@ export default function SelectToken({
 
   const tokenImageLink = isKenyanShilling
     ? "/images/tokens/KES.png"
-    : storeSnapshot.selectedToken === "USDT"
-      ? "/images/tokens/USDT.svg"
-      : storeSnapshot.selectedToken === "USDC"
-        ? "/images/tokens/USDC.png"
-        : "";
+    : storeSnapshot.selectedToken === "NGN"
+      ? "/images/tokens/ngn.png"
+      : storeSnapshot.selectedToken === "USDT"
+        ? "/images/tokens/USDT.svg"
+        : storeSnapshot.selectedToken === "USDC"
+          ? "/images/tokens/USDC.png"
+          : "";
   return (
     <Menu position="bottom" withArrow width={140}>
       <Menu.Target>
@@ -55,11 +57,13 @@ export default function SelectToken({
                 src={
                   token === "KES"
                     ? "/images/tokens/KES.png"
-                    : token === "USDT"
-                      ? "/images/tokens/USDT.svg"
-                      : token === "USDC"
-                        ? "/images/tokens/USDC.png"
-                        : ""
+                    : token === "NGN"
+                      ? "/images/tokens/ngn.png"
+                      : token === "USDT"
+                        ? "/images/tokens/USDT.svg"
+                        : token === "USDC"
+                          ? "/images/tokens/USDC.png"
+                          : ""
                 }
                 alt="token logo"
                 className=" h-4 w-4 object-contain"
