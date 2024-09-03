@@ -41,6 +41,7 @@
     "server-only": "^0.0.1",
     "superjson": "^2.2.1",
     "thirdweb": "^5.50.0",
+    "valtio": "^2.0.0",
     "zod": "^3.23.3"
   },
   "devDependencies": {
