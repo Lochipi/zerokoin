@@ -5,9 +5,10 @@ import "@/styles/globals.css";
 import { TRPCReactProvider } from "@/trpc/react";
 import { ColorSchemeScript } from "@mantine/core";
 import MainProvider from "./_components/providers/MainProvider";
-import Navbar from "./_components/common/navbar/Navbar";
+
 import Footer from "./_components/common/Footer";
 import { Inter } from "next/font/google";
+import Navbar from "./_components/common/navbar/Navbar";
 
 export const metadata = {
   title: "Zerokoin",
