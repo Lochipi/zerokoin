@@ -5,10 +5,9 @@ import "@/styles/globals.css";
 import { TRPCReactProvider } from "@/trpc/react";
 import { ColorSchemeScript } from "@mantine/core";
 import MainProvider from "./_components/providers/MainProvider";
-
+import Navbar from "./_components/common/navbar/Navbar";
 import Footer from "./_components/common/Footer";
 import { Inter } from "next/font/google";
-import Navbar from "./_components/common/navbar/Navbar";
 
 export const metadata = {
   title: "Zerokoin",
@@ -37,7 +36,7 @@ export default function RootLayout({
           <MainProvider>
             <div className="flex min-h-screen flex-col">
               <Navbar />
-              <main className="w-full flex-1 overflow-y-auto overflow-x-hidden px-4 pt-20 sm:px-12 sm:pt-24">
+              <main className=" w-full flex-1 overflow-y-auto overflow-x-hidden px-4 pt-20 sm:px-12 sm:pt-24">
                 {children}
               </main>
               <Footer />
