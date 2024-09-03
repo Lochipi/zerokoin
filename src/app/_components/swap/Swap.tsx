@@ -131,7 +131,7 @@ export default function Swap({ swapType }: SwapProps) {
         thousandSeparator=","
         rightSectionWidth="fit"
         rightSection={
-          <SelectToken isKenyanShilling supportedTokens={["KES"]} />
+          <SelectToken isKenyanShilling supportedTokens={["KES", "NGN"]} />
         }
         size="xl"
         className=" w-full text-xs"

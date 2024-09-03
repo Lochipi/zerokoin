@@ -3,7 +3,7 @@ import { proxy } from "valtio";
 type GlobalStoreType = {
   walletChoice: "Binance" | "Wallet";
   orderType: "Buy" | "Sell";
-  selectedToken: "KES" | "USDT" | "USDC";
+  selectedToken: "KES" | "NGN" | "USDT" | "USDC";
 };
 
 export const globalStore = proxy<GlobalStoreType>({
