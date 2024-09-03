@@ -1,20 +1,80 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
-    provider = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
-    provider = "postgresql"
-    url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
-model Post {
-    id        Int      @id @default(autoincrement())
-    name      String
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+model Order {
+  id                       String       @id @default(uuid())
+  userId                   String?
+  orderType                OrderType
+  swapToken                String
+  qoutedTokenAmount        Float
+  quotedFiatAmount         Float
+  qoutedExchangeRate       Float
+  walletAdressChoice       WalletChoice
+  status                   OrderStatus  @default(PENDING)
+  createdAt                DateTime     @default(now())
+  settlementBlockchain     Int
+  walletAddress            String?
+  binanceId                String?
+  transactionFee           Float?
+  txnHash                  String?
+  additionalNotes          String?
+  updatedAt                DateTime?    @updatedAt
+  stkMessage               StkMessage?
+  OriginatorConversationID String?      @unique
+  ConversationID           String?      @unique
+  TransactionID            String?
+  receiverPartyPublicName  String?
+}
 
-    @@index([name])
+model ExchangeRate {
+  id               Int       @id @default(autoincrement())
+  buyExchangeRate  Float
+  sellExchangeRate Float
+  createdAt        DateTime? @default(now())
+  updatedAt        DateTime? @updatedAt
+}
+
+model StkMessage {
+  id                  Int       @id @default(autoincrement())
+  orderId             String    @unique
+  MerchantRequestID   String
+  CheckoutRequestID   String
+  stkStatus           StkStatus @default(PENDING)
+  ResponseDescription String?
+  CustomerMessage     String?
+  phoneNumber         String
+  order               Order     @relation(fields: [orderId], references: [id])
+}
+
+enum OrderType {
+  BUY
+  SELL
+}
+
+enum WalletChoice {
+  BINANCEWALLETADDRESS
+  SELFCUSTODIALWALLET
+}
+
+enum OrderStatus {
+  PENDING
+  PAYMENTINTIATED
+  USERPAYMENTFAILED
+  SYSTEMPAYMENTFAILED
+  PAYMENTCOMPLETED
+  CANCELLED
+  COMPLETED
+}
+
+enum StkStatus {
+  PENDING
+  SUCCESS
+  CANCELLED
 }
