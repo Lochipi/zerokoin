@@ -4,7 +4,7 @@ import classes from "./Faqs.module.css";
 
 export default function Faqs() {
   return (
-    <div className=" py-40">
+    <div className="py-40">
       <div>
         <Grid id="faq-grid" gutter={50}>
           <Grid.Col span={{ base: 12, md: 6 }}>
