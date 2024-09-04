@@ -22,7 +22,7 @@ export const ConnectWalletButton = ({
     <div className="">
       <ConnectButton
         client={thirdwebFrontendClient}
-        chain={optimismSepolia}
+        chain={defineChain(1135)}
         chains={[defineChain(4202), defineChain(1135)]}
         wallets={[
           embeddedWallet(),
