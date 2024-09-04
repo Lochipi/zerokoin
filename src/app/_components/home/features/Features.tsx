@@ -9,9 +9,9 @@ import { textVariant } from "../Animations";
 
 export default function Features() {
   return (
-    <section className="custom-screen py-8">
+    <section className="custom-screen  md:py-8">
       <div className="mx-auto max-w-xl text-center leading-none">
-        <motion.h3 className=" text-4xl font-bold"
+        <motion.h3 className="text-2xl md:text-4xl font-bold"
         initial="initial"
         whileInView="final"
         viewport={{ once: true }}

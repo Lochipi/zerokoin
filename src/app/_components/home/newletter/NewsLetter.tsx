@@ -3,8 +3,8 @@ import classes from "./NewsLetter.module.css";
 
 export function NewsLetter() {
   return (
-    <div className=" py-16">
-      <div className={classes.wrapper}>
+    <div className="flex justify-center py-16">
+      <div className={`${classes.wrapper} lg:w-[1300px] lg:px-10`}>
         <div className={classes.body}>
           <Title className={classes.title}>Newsletter</Title>
           <Text fw={500} fz="lg" mb={5}>
