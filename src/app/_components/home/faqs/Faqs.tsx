@@ -3,6 +3,8 @@ import { Image, Accordion, Grid, Title } from "@mantine/core";
 import classes from "./Faqs.module.css";
 
 export default function Faqs() {
+  const accordionClass = "border-hover hover:border-yellow-400 focus:border-yellow-400";
+
   return (
     <div className="py-30 pt-20">
       <div className="">
@@ -20,7 +22,7 @@ export default function Faqs() {
               variant="separated"
               transitionDuration={500}
             >
-              <Accordion.Item className={classes.item} value="working">
+              <Accordion.Item className={`${classes.item} ${accordionClass}`} value="working">
                 <Accordion.Control>How does Zerokoin work?</Accordion.Control>
                 <Accordion.Panel>
                   Zerokoin simplifies the process of buying or selling crypto
@@ -29,7 +31,7 @@ export default function Faqs() {
                 </Accordion.Panel>
               </Accordion.Item>
 
-              <Accordion.Item className={classes.item} value="supported-crypto">
+              <Accordion.Item className={`${classes.item} ${accordionClass}`} value="supported-crypto">
                 <Accordion.Control>
                   What cryptocurrencies can I trade on Zerokoin?
                 </Accordion.Control>
@@ -42,7 +44,7 @@ export default function Faqs() {
                   cryptocurrencies for your trading needs.
                 </Accordion.Panel>
               </Accordion.Item>
-              <Accordion.Item className={classes.item} value="fees">
+              <Accordion.Item className={`${classes.item} ${accordionClass}`} value="fees">
                 <Accordion.Control>
                   Are there any hidden fees on Zerokoin?
                 </Accordion.Control>
@@ -54,7 +56,7 @@ export default function Faqs() {
                   hidden fees – what you see is what you get.
                 </Accordion.Panel>
               </Accordion.Item>
-              <Accordion.Item className={classes.item} value="kyc">
+              <Accordion.Item className={`${classes.item} ${accordionClass}`} value="kyc">
                 <Accordion.Control>
                   Do I need to complete KYC to use Zerokoin ?
                 </Accordion.Control>
@@ -72,7 +74,7 @@ export default function Faqs() {
               </Accordion.Item>
 
               <Accordion.Item
-                className={classes.item}
+                className={`${classes.item} ${accordionClass}`}
                 value="failed-transactions"
               >
                 <Accordion.Control>

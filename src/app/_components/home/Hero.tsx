@@ -20,22 +20,22 @@ export const Hero = () => {
   }, [words.length]);
 
   return (
-    <div className=" flex   flex-col items-center px-4 py-8 text-center">
+    <div className=" flex  flex-col items-center px-4 py-8 text-center">
       <Notification
         title={
           <div className=" flex h-full w-full items-center justify-between gap-x-2">
             <Pill>Alpha</Pill>
-            <p className="">
+            <p className="text-[12px] lg:text-[14px]">
               Zerokoin is in early development ! Launching soon
             </p>
           </div>
         }
-        className=" flex h-10 w-fit items-center px-2 text-xs"
+        className=" flex h-10 w-[105%] md:w-fit items-center px-2 text-xs"
         radius="xl"
         withCloseButton={false}
       />
       <motion.h1
-        className="mb-4 text-4xl font-extrabold leading-none  tracking-tight md:text-5xl lg:text-6xl"
+        className="mb-4 text-3xl md:text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-6xl"
         initial="initial"
         whileInView="final"
         viewport={{ once: true }}
@@ -56,7 +56,7 @@ export const Hero = () => {
         </AnimatePresence>
       </motion.h1>
       <motion.p
-        className="mb-8 text-lg font-normal  sm:px-16 lg:text-xl xl:px-48 "
+        className="mb-8 text-sm font-normal sm:px-16 lg:text-xl xl:max-w-[60%] "
         initial="initial"
         whileInView="final2"
         viewport={{ once: true }}
