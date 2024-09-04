@@ -123,7 +123,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className="py-6 text-center border-t-[2px] border-white text-sm">
+      <div className="py-6 text-center text-[#bbb] border-t-[2px] border-white text-sm">
         © {currentYear} Zerokoin, All rights reserved.
       </div>
     </footer>
