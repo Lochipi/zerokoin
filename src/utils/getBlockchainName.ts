@@ -5,6 +5,8 @@ export function getBlockchainName(chainId: number): string {
     return "OPTIMISM";
   } else if (chainId === 1135) {
     return "LISK NETWORK";
+  } else if (chainId === 4202) {
+    return "LISK NETWORK";
   } else if (chainId === 56) {
     return "BNB SMART CHAIN";
   } else if (chainId === 11155420) {

@@ -27,33 +27,31 @@ interface StkPushResponse {
 type TransactionType = "CustomerPayBillOnline" | "CustomerBuyGoodsOnline";
 
 async function sendStkPush({
-  businessShortCode,
   transactionType,
   amount,
   partyA,
-  partyB,
   phoneNumber,
   callBackURL,
   accountReference,
   transactionDesc,
-  sandbox = true,
+  sandbox,
 }: {
-  businessShortCode: string;
   transactionType: TransactionType;
   amount: string;
   partyA: string;
-  partyB: string;
   phoneNumber: string;
   callBackURL: string;
   accountReference: string;
   transactionDesc: string;
-  sandbox?: boolean;
+  sandbox: boolean;
 }): Promise<StkPushResponse> {
   try {
     const token = await getAccessToken({
       sandbox: sandbox,
     });
-
+    const businessShortCode = sandbox
+      ? process.env.MPESA_SANDBOX_SHORT_CODE!
+      : process.env.MPESA_LIVE_SHORT_CODE!;
     const date = new Date();
     const passkey = sandbox
       ? process.env.MPESA_SANDBOX_CONSUMER_PASSKEY!
@@ -77,7 +75,7 @@ async function sendStkPush({
       TransactionType: transactionType,
       Amount: amount,
       PartyA: partyA,
-      PartyB: partyB,
+      PartyB: businessShortCode,
       PhoneNumber: phoneNumber,
       CallBackURL: callBackURL,
       AccountReference: accountReference,
@@ -86,11 +84,13 @@ async function sendStkPush({
       Password: stkPassword,
     };
 
+    console.log("Token Fetched Starting STK");
     const response: AxiosResponse<StkPushResponse> = await axios.post(
       url,
       requestBody,
       { headers },
     );
+    console.log("STK invoked");
 
     return response.data;
   } catch (error) {

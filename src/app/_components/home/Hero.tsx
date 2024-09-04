@@ -1,6 +1,5 @@
 import { SWAP_PAGE } from "@/utils/constants";
 import { Button, Notification, Pill } from "@mantine/core";
-import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { contVariant, leftVariant, textVariant } from "./Animations";
@@ -9,7 +8,7 @@ import { useRouter } from "next/navigation";
 const Words = ["Complexity", "Barriers"];
 
 export const Hero = () => {
-  const [words, setWords] = useState(Words);
+  const [words] = useState(Words);
   const [index, setIndex] = useState(0);
   const router = useRouter();
   useEffect(() => {

@@ -148,7 +148,7 @@ export default function OrderDetails({
 
         {orderDetails.data?.txnHash && (
           <Link
-            href={`https://sepolia-optimism.etherscan.io/tx/${orderDetails.data.txnHash}`}
+            href={`https://sepolia-blockscout.lisk.com/tx/${orderDetails.data.txnHash}`}
             className=" my-4 w-full"
           >
             <Button className=" w-full rounded-full">View on blockchain</Button>

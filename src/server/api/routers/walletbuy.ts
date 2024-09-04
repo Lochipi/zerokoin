@@ -34,14 +34,12 @@ export const walletBuyOrderRouter = createTRPCRouter({
         if (mpesaAccessToken) {
           console.log("FETCHED ACCESS TOKEN", mpesaAccessToken);
           const stkPush = await sendStkPush({
-            businessShortCode: process.env.MPESA_LIVE_SHORT_CODE!,
             transactionType: "CustomerPayBillOnline",
             amount:
               process.env.NODE_ENV === "development"
                 ? "2"
                 : Math.ceil(orderDetails.quotedFiatAmount).toString(),
             partyA: input.mpesaPaymentNumber,
-            partyB: process.env.MPESA_LIVE_SHORT_CODE!,
             phoneNumber: input.mpesaPaymentNumber,
             callBackURL: process.env.MPESA_CTOB_CALLBACK_URL!,
             accountReference: "Zerokoin",
