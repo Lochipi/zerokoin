@@ -2,16 +2,29 @@ import React from "react";
 import { RiSecurePaymentLine } from "react-icons/ri";
 import { GiTwoCoins } from "react-icons/gi";
 import { SiAdguard } from "react-icons/si";
-
+import {motion} from "framer-motion";
 import { FeatureCard } from "./FeatureCard";
+import { textVariant } from "../Animations";
+
+
 export default function Features() {
   return (
     <section className="custom-screen py-8">
       <div className="mx-auto max-w-xl text-center leading-none">
-        <h3 className=" text-4xl font-bold">Seamless crypto and fiat swaps</h3>
-        <p className="">
+        <motion.h3 className=" text-4xl font-bold"
+        initial="initial"
+        whileInView="final"
+        viewport={{ once: true }}
+        variants={textVariant}
+        >Seamless crypto and fiat swaps</motion.h3>
+        <motion.p className=""
+        initial="initial"
+        whileInView="final2"
+        viewport={{ once: true }}
+        variants={textVariant}
+        >
           Zerokoin offers the best cryto-fiat on-ramp and off-ramp gateway
-        </p>
+        </motion.p>
       </div>
 
       <div className=" mx-auto mt-8 max-w-7xl grid-cols-2 gap-6 space-y-6 py-8 sm:grid sm:space-y-0 lg:grid-cols-3">
