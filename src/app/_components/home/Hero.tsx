@@ -92,7 +92,7 @@ export const Hero = () => {
       </motion.div>
       <div className="flex flex-col mt-8 w-full justify-center items-center">
         <span className="font-semibold text-xl md:text-2xl">POWERED BY</span>
-        <div className="mt-8 flex flex-col sm:flex-row">
+        <div className="mt-0 md:mt-8 flex flex-col sm:flex-row">
           <motion.div
             className="mb-5 h-32  w-64 "
             initial="initial"
@@ -120,7 +120,7 @@ export const Hero = () => {
             />
           </motion.div>
           <motion.div
-            className="mb-5 h-32  w-64 lg:mb-0"
+            className=" h-32  w-64 lg:mb-0"
             initial="initial"
             whileInView="final3"
             // viewport={{ once: true }}
