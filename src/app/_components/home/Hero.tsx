@@ -35,7 +35,7 @@ export const Hero = () => {
         withCloseButton={false}
       />
       <motion.h1
-        className="mb-4 text-3xl md:text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-6xl"
+        className="my-4 mt-8 text-3xl md:text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-6xl"
         initial="initial"
         whileInView="final"
         viewport={{ once: true }}
@@ -90,11 +90,11 @@ export const Hero = () => {
           Learn more
         </Button>
       </motion.div>
-      <div className="mx-auto px-4 text-center ">
-        <span className="font-semibold uppercase ">POWERED BY</span>
-        <div className="mt-8 flex flex-col gap-4 sm:flex-row  sm:justify-around">
+      <div className="flex flex-col mt-8 w-full justify-center items-center">
+        <span className="font-semibold text-xl md:text-2xl">POWERED BY</span>
+        <div className="mt-8 flex flex-col sm:flex-row">
           <motion.div
-            className="mb-5 mr-5 h-32  w-64 "
+            className="mb-5 h-32  w-64 "
             initial="initial"
             whileInView="final"
             // viewport={{ once: true }}
@@ -107,7 +107,7 @@ export const Hero = () => {
             />
           </motion.div>
           <motion.div
-            className="mb-5 mr-5 h-32  w-64 lg:mb-0"
+            className="mb-5 h-32  w-64 lg:mb-0"
             initial="initial"
             whileInView="final2"
             // viewport={{ once: true }}
@@ -120,7 +120,7 @@ export const Hero = () => {
             />
           </motion.div>
           <motion.div
-            className="mb-5 mr-5 h-32  w-64 lg:mb-0"
+            className="mb-5 h-32  w-64 lg:mb-0"
             initial="initial"
             whileInView="final3"
             // viewport={{ once: true }}
