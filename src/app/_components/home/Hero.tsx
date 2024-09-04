@@ -91,24 +91,11 @@ export const Hero = () => {
       </motion.div>
       <div className="flex flex-col mt-8 w-full justify-center items-center">
         <span className="font-semibold text-xl md:text-2xl">POWERED BY</span>
-        <div className="mt-8 flex flex-col sm:flex-row">
+        <div className="mt-0 md:mt-8 flex itens-center flex-col sm:flex-row">
           <motion.div
-            className="mb-5 h-32  w-64 "
+            className="mb-5 h-32  w-84 md:w-64"
             initial="initial"
             whileInView="final"
-            // viewport={{ once: true }}
-            variants={leftVariant}
-          >
-            <img
-              src="/images/binance-logo.svg"
-              alt=""
-              className=" h-full w-full object-cover"
-            />
-          </motion.div>
-          <motion.div
-            className="mb-5 h-32  w-64 lg:mb-0"
-            initial="initial"
-            whileInView="final2"
             // viewport={{ once: true }}
             variants={leftVariant}
           >
@@ -119,18 +106,44 @@ export const Hero = () => {
             />
           </motion.div>
           <motion.div
-            className="mb-5 h-32  w-64 lg:mb-0"
+            className="mb-5 h-22 md:h-32 w-45 md:w-44 lg:mb-0"
+            initial="initial"
+            whileInView="final2"
+            // viewport={{ once: true }}
+            variants={leftVariant}
+          >
+            <img
+              src="/images/lisk.png"
+              alt=""
+              className=" h-20 w-20 object-cover"
+            />
+          </motion.div>
+          <motion.div
+            className="mb-5 h-20 w-60 lg:mb-0"
+            initial="initial"
+            whileInView="final2"
+            // viewport={{ once: true }}
+            variants={leftVariant}
+          >
+            <img
+              src="/images/Paystack.png"
+              alt=""
+              className=" h-20 w-50 object-cover"
+            />
+          </motion.div>
+          {/* <motion.div
+            className=" h-32  w-64 lg:mb-0"
             initial="initial"
             whileInView="final3"
             // viewport={{ once: true }}
             variants={leftVariant}
           >
             <img
-              src="/images/wallet-connect-logo.png"
+              src="/images/lisk.png"
               alt=""
               className=" h-full w-full object-cover"
             />
-          </motion.div>
+          </motion.div> */}
         </div>
       </div>
     </div>
