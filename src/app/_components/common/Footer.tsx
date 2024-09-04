@@ -1,5 +1,6 @@
 import React from "react";
-
+import { Image } from "@mantine/core";
+import { HOME_PAGE } from "@/utils/constants";
 import Link from "next/link";
 import { RiDiscordFill, RiTwitterXFill, RiYoutubeFill } from "react-icons/ri";
 
@@ -13,13 +14,18 @@ export default function Footer() {
             rel="noopener noreferrer"
             className="flex justify-center space-x-3 lg:justify-start"
           >
-            <Link href="/">
-              <h2>Zerokoin</h2>
-            </Link>
+          <Link href={HOME_PAGE} className=" flex flex-col items-center mb-[50px]">
+            <div className="flex items-center gap-x-2">
+              <Image src="/images/logo.png" alt="Logo" className=" h-14 w-14 " />
+              <h3 className="text-[42px]">Zerokoin</h3>
+            </div>
+            <div className="text-[12px] my-[-55px] ml-[64px]">Zero Complexity, Zero Barriers.</div>
+          </Link>
           </div>
         </div>
-        <div className="grid list-none grid-cols-2 gap-x-3 gap-y-8 text-sm sm:grid-cols-4 lg:w-2/3">
-          <div className="fle  space-y-3">
+
+        <div className="grid list-none grid-cols-2 gap-x-3 gap-y-8 lg:ml-[60px] text-sm sm:grid-cols-3 lg:w-2/3">
+          <div className="space-y-3">
             <h3 className="tracki uppercase">Product</h3>
             <div className="space-y-1 ">
               <li>
@@ -59,7 +65,8 @@ export default function Footer() {
               </li>
             </div>
           </div>
-          <div className="space-y-3">
+
+          {/* <div className="space-y-3">
             <h3 className="uppercase ">Docs</h3>
             <div className="space-y-1">
               <li>
@@ -83,7 +90,8 @@ export default function Footer() {
                 </Link>
               </li>
             </div>
-          </div>
+          </div> */}
+
           <div className="space-y-3">
             <h3 className="uppercase ">SOCIAL MEDIA</h3>
             <div className="flex gap-x-2 space-y-1">
@@ -115,7 +123,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className="py-6 text-center text-sm">
+      <div className="py-6 text-center border-t-[2px] border-white text-sm">
         © {currentYear} Zerokoin, All rights reserved.
       </div>
     </footer>
