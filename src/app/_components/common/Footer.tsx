@@ -40,7 +40,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link rel="noopener noreferrer" href="/">
-                  Bridge Assets
+                  Whitepaper
                 </Link>
               </li>
             </div>
