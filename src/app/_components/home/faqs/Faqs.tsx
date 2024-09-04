@@ -6,9 +6,9 @@ export default function Faqs() {
   const accordionClass = "border-hover hover:border-yellow-400 focus:border-yellow-400";
 
   return (
-    <div className="flex py-30 pt-20 w-screen">
-      <div className="w-full flex justify-center">
-        <Grid id="faq-grid" gutter={50} className="w-[88%] lg:w-[1200px]">
+    <div className="">
+      <div className="lg:flex lg:justify-center lg:w-screen pt-12 lg:pt-22">
+        <Grid id="faq-grid" gutter={50} className="lg:w-[1200px]">
           <Grid.Col span={{ base: 12, md: 6 }}>
             <Image src="/images/faqs.svg" alt="Frequently Asked Questions" />
           </Grid.Col>
