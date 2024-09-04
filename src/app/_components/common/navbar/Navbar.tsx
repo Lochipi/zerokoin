@@ -17,8 +17,8 @@ export default function Navbar() {
   const navItems = [
     { label: "Buy crypto", path: SWAP_PAGE },
     { label: "Sell crypto", path: SWAP_PAGE },
-    { label: "Bridge", path: SWAP_PAGE },
-    { label: "About us", path: HOME_PAGE },
+    // { label: "Bridge", path: SWAP_PAGE },
+    { label: "Whitepaper", path: HOME_PAGE },
   ];
   return (
     <Paper className="    fixed top-0 z-50 flex w-full items-center  justify-between  px-4 py-2   text-sm    font-medium  sm:px-12">

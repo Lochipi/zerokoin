@@ -4,8 +4,8 @@ import classes from "./Faqs.module.css";
 
 export default function Faqs() {
   return (
-    <div className=" py-40">
-      <div>
+    <div className="py-30 pt-20">
+      <div className="">
         <Grid id="faq-grid" gutter={50}>
           <Grid.Col span={{ base: 12, md: 6 }}>
             <Image src="/images/faqs.svg" alt="Frequently Asked Questions" />
@@ -18,7 +18,7 @@ export default function Faqs() {
             <Accordion
               chevronPosition="right"
               variant="separated"
-              transitionDuration={1000}
+              transitionDuration={500}
             >
               <Accordion.Item className={classes.item} value="working">
                 <Accordion.Control>How does Zerokoin work?</Accordion.Control>
