@@ -24,7 +24,7 @@ export default function Swap({ swapType }: SwapProps) {
   const [qoutedTokenAmount, setQoutedTokenAmount] = useState<number>(0);
   const [settlementBlockchain, setSettlementBlockchain] = useState<
     number | null
-  >(11155420);
+  >(4202);
   const storeSnapshot = useSnapshot(globalStore);
   const router = useRouter();
   const currentExchangeRate =
@@ -181,18 +181,18 @@ export default function Swap({ swapType }: SwapProps) {
       />
       <Select
         value={settlementBlockchain?.toString()}
-        defaultValue={"LISK NETWORK"}
+        defaultValue={"LISK SEPOLIA"}
         onChange={(val) =>
           val ? setSettlementBlockchain(parseInt(val)) : null
         }
         data={[
           {
             value: "1135",
-            label: "LISK NETWORK",
+            label: "LISK ",
           },
           {
-            value: "11155420",
-            label: "OP SEPOLA",
+            value: "4202",
+            label: "LISK SEPOLIA",
           },
         ]}
         renderOption={({ option }) => (
@@ -236,7 +236,7 @@ export default function Swap({ swapType }: SwapProps) {
                         Available Liquidity
                       </span>
                       <span>
-                        {option.label === "OP SEPOLA"
+                        {option.label === "LISK SEPOLIA"
                           ? `1000+ ${storeSnapshot.selectedToken}`
                           : `0 ${storeSnapshot.selectedToken}`}
                       </span>
@@ -267,10 +267,10 @@ export default function Swap({ swapType }: SwapProps) {
                 src={
                   option.value === "10"
                     ? "https://icons.llamao.fi/icons/chains/rsz_optimism.jpg"
-                    : option.value === "42161"
-                      ? "https://icons.llamao.fi/icons/chains/rsz_arbitrum.jpg"
-                      : option.value === "56"
-                        ? "https://icons.llamao.fi/icons/chains/rsz_binance.jpg"
+                    : option.value === "4202"
+                      ? "https://cryptologos.cc/logos/lisk-lsk-logo.png?v=033"
+                      : option.value === "1135"
+                        ? "https://cryptologos.cc/logos/lisk-lsk-logo.png?v=033"
                         : "https://chainlist.org/unknown-logo.png"
                 }
                 className=" object-contain"

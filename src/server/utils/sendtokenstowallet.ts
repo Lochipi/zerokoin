@@ -1,8 +1,7 @@
 import { privateKeyAccount } from "thirdweb/wallets";
 import { thirdwebServerClient } from "./thirdweb";
 import { transfer } from "thirdweb/extensions/erc20";
-import { getContract, sendAndConfirmTransaction } from "thirdweb";
-import { optimismSepolia } from "thirdweb/chains";
+import { defineChain, getContract, sendAndConfirmTransaction } from "thirdweb";
 
 export async function sendStableCoinTokenToWalletAddress({
   toAddress,
@@ -16,13 +15,13 @@ export async function sendStableCoinTokenToWalletAddress({
     client: thirdwebServerClient,
     privateKey: process.env.LIQUIDITY_ACCOUNT_PRIVATE_KEY!,
   });
-  const opSepoliaUSDCTestContract = getContract({
+  const LiskSepoliaUSDCTestContract = getContract({
     client: thirdwebServerClient,
-    chain: optimismSepolia,
-    address: "0x847Daaf2F7A1e4DAa41642206a4eE8BBe3f8521B",
+    chain: defineChain(4202),
+    address: "0xf966ce77F72a662b496530349026Aa4881119242",
   });
   const transferTokensTransaction = transfer({
-    contract: opSepoliaUSDCTestContract,
+    contract: LiskSepoliaUSDCTestContract,
     to: toAddress,
     amount: amount,
   });

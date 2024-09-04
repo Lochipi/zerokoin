@@ -116,7 +116,8 @@ export default function WalletBuyOrder({ orderId }: WalletOderProps) {
       account?.address &&
       mpesaPaymentNumber &&
       mpesaPaymentNumber.length === 10 &&
-      !isNaN(Number(mpesaPaymentNumber))
+      (!isNaN(Number(mpesaPaymentNumber)) ||
+        mpesaPaymentNumber.startsWith("01"))
     ) {
       intiateMpesaPayment.mutate({
         walletAddress: account.address,
