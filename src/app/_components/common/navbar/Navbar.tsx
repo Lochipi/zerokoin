@@ -26,7 +26,7 @@ export default function Navbar() {
         <div className=" flex-1 ">
           <Logo />
         </div>
-        <section className=" hidden grow justify-center gap-x-6 sm:flex">
+        <section className=" hidden grow justify-center items-center gap-x-6 sm:flex">
           {navItems.map((item) => (
             <Link
               href={item.path}

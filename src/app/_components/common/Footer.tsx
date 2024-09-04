@@ -16,10 +16,10 @@ export default function Footer() {
           >
           <Link href={HOME_PAGE} className=" flex flex-col items-center mb-[50px]">
             <div className="flex items-center gap-x-2">
-              <Image src="/images/logo.png" alt="Logo" className=" h-14 w-14 " />
-              <h3 className="text-[42px]">Zerokoin</h3>
+              <Image src="/images/logo.png" alt="Logo" className=" h-10 md:h-14 lg:h-16 w-10 md:w-14 lg:w-16 " />
+              <h3 className="text-[34px] md:text-[38px] lg:text-[42px]">Zerokoin</h3>
             </div>
-            <div className="text-[12px] my-[-55px] ml-[64px]">Zero Complexity, Zero Barriers.</div>
+            <div className="text-[10px] md:text-[11px] lg:text-[12px] my-[-45px] md:mt-[-52px] lg:mt-[-57px] ml-[50px] md:ml-[65px] lg:ml-[70px]">Zero Complexity, Zero Barriers.</div>
           </Link>
           </div>
         </div>
