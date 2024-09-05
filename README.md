@@ -28,6 +28,13 @@ Our mission doesn't stop here. We plan to continue improving Zerokoin, adding ne
 - **UI Components**: Mantine
 - **Backend**: tRPC for endpoints
 - **Database**: PostgreSQL
+- **Blockchain**: Lisk
+
+## Submission
+
+- [Pitch Deck](https://drive.google.com/file/d/1B1W6x4WS2ed0GyAeOdJDom1KkGttjUoF/view?usp=sharing)
+- [Demo Video](https://youtu.be/MnT-J93T9H4)
+- [WhitePaper](https://docs.google.com/document/d/1KQWaoBdhBnznPJqkOYFgIs_nNSJlliWzOf0CpHdLZNg/edit?usp=sharing)
 
 ## Getting Started
 
