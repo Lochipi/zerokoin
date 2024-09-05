@@ -14,13 +14,13 @@ Zerokoin is built on the principle of accessibility. We want to make it easier f
 
 ### Key Features
 
-- **Local Currency Integration**: Use your local money transfer methods to interact with cryptocurrencies.
+- **Local Currency Integration**: Use local money transfer methods to interact with cryptocurrencies.
 - **MPC Wallet**: Enhanced security with Multi-Party Computation wallets.
 - **Gasless Transactions**: No transaction fees for seamless crypto operations.
 
 ### Future Plans
 
-Our mission doesn't stop here. We plan to continue improving Zerokoin, adding new features, and expanding its reach. We envision a future where anyone can participate in the blockchain economy, regardless of their location or technical expertise.
+Our mission doesn't stop here. We plan to continue improving Zerokoin, adding new features, and expanding its reach. We envision a future where anyone can participate in the blockchain economy, regardless of location or technical expertise. We will expand to integrate more African currencies to reduce the crypto economy's entry barrier and get real liquidity to fund the project.
 
 ## Tech Stack
 
