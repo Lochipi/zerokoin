@@ -1,16 +1,22 @@
 # Zerokoin✨
 
-Welcome to Zerokoin, a project designed to bridge the gap between the complexities of blockchain technology and the people who need it the most. Zerokoin makes it easy for everyone, including those in remote areas, to access and use cryptocurrencies with ease.
+Many Africans are resourceful and eager to seize global opportunities, like those offered by the gig economy. However, high transaction fees, unfavorable exchange rates, and scams often prevent them from fully participating.
+
+Welcome to Zerokoin, a project aimed at simplifying blockchain technology for the average African. Our goal is to empower users to transact seamlessly and effortlessly.
 
 ## Introduction
 
-We live in a world full of promises, especially in the realm of technology. However, not everyone can enjoy these promises equally. While crypto offers many advantages, its complexities often exclude those without a tech background.
+Technology promises many benefits, but not everyone enjoys them equally. Cryptocurrency offers significant advantages, yet its complexity can be a barrier for those without a tech background.
 
-Zerokoin aims to change that by making blockchain accessible to everyone, particularly in Africa. We believe that everyone, even individuals in local villages, should have access to the benefits of cryptocurrency. Zerokoin abstracts the technical aspects, making it possible for anyone to get involved in the crypto world without needing a deep understanding of blockchain.
+Zerokoin is here to change that by making blockchain technology accessible to everyone, especially in Africa. We believe that even individuals in remote villages should be able to benefit from cryptocurrency. Zerokoin simplifies the technical aspects of blockchain, allowing anyone to get involved without needing an in-depth understanding.
 
 ### Our Vision
 
-Zerokoin is built on the principle of accessibility. We want to make it easier for Africans to get into blockchain by providing tools that simplify the process. Whether you're sending, receiving, or withdrawing crypto, Zerokoin makes it possible with local currency integration and advanced features like MPC wallets and gasless transactions.
+We envision a world where Africans can transact without barriers, complexity, or high fees. Zerokoin is dedicated to making blockchain accessible and straightforward, enabling seamless transactions through local currency integration and advanced features like MPC wallets and gasless transactions.
+
+### Our Mission
+
+Our mission is to simplify cryptocurrency transactions, removing obstacles and fees to make participation easy for everyone.
 
 ### Key Features
 
@@ -20,7 +26,8 @@ Zerokoin is built on the principle of accessibility. We want to make it easier f
 
 ### Future Plans
 
-Our mission doesn't stop here. We plan to continue improving Zerokoin, adding new features, and expanding its reach. We envision a future where anyone can participate in the blockchain economy, regardless of location or technical expertise. We will expand to integrate more African currencies to reduce the crypto economy's entry barrier and get real liquidity to fund the project.
+Our journey doesn’t end here. We plan to continuously enhance Zerokoin by adding new features and expanding our reach. We aim to integrate more African currencies to lower entry barriers and provide real liquidity to support our growth.
+
 
 ## Tech Stack
 
@@ -34,8 +41,8 @@ Our mission doesn't stop here. We plan to continue improving Zerokoin, adding ne
 
 ## Submission
 
-- [Pitch Deck](https://drive.google.com/file/d/1B1W6x4WS2ed0GyAeOdJDom1KkGttjUoF/view?usp=sharing)
-- [Demo Video](https://youtu.be/MnT-J93T9H4)
+- [Pitch Deck](https://drive.google.com/file/d/1_lEJ_yqICfst6UB3xc2rEoaJRLfANvUv/view?usp=sharing)
+- [Demo Video](https://youtu.be/rcVpWs5rFGs?feature=shared)
 - [WhitePaper](https://docs.google.com/document/d/1KQWaoBdhBnznPJqkOYFgIs_nNSJlliWzOf0CpHdLZNg/edit?usp=sharing)
 
 ## Getting Started
