@@ -25,10 +25,12 @@ Our mission doesn't stop here. We plan to continue improving Zerokoin, adding ne
 ## Tech Stack
 
 - **Frontend**: Next.js
+- **Language**: Typescript
 - **UI Components**: Mantine
 - **Backend**: tRPC for endpoints
 - **Database**: PostgreSQL
-- **Blockchain**: Lisk
+- **Wallet Integration**: ThirdWeb
+- **Blockchain**: Lisk, Optimism, Base.
 
 ## Submission
 
