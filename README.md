@@ -38,6 +38,9 @@ Our journey doesn’t end here. We plan to continuously enhance Zerokoin by addi
 - **Database**: PostgreSQL
 - **Wallet Integration**: ThirdWeb
 - **Blockchain**: Lisk, Optimism, Base.
+  
+
+![Supported Chains](https://github.com/user-attachments/assets/4e2f7ba0-139e-4df9-ad9a-7408c5f4c2ec)
 
 ## Submission
 
