@@ -1,3 +1,4 @@
+
 import {
   Avatar,
   Button,
@@ -15,6 +16,7 @@ import { modals } from "@mantine/modals";
 import { useRouter } from "next/navigation";
 import { ORDERS_PAGE } from "@/utils/constants";
 import Link from "next/link";
+import PaystackPop from '@paystack/inline-js';
 
 interface SwapProps {
   swapType: "Buy" | "Sell";
@@ -48,6 +50,12 @@ export default function Swap({ swapType }: SwapProps) {
       }
     },
   });
+
+  // Call the initialize payment endpoint to get the access code
+  const completePaystackTransaction = (access_code: string) => {
+    const popup = new PaystackPop()
+    popup.resumeTransaction(access_code)
+  }
 
   function submitNewOrder() {
     if (
@@ -101,11 +109,11 @@ export default function Swap({ swapType }: SwapProps) {
             setQoutedFiatAmount(amount);
             swapType === "Buy"
               ? setQoutedTokenAmount(
-                  amount / currentExchangeRate.data.buyExchangeRate,
-                )
+                amount / currentExchangeRate.data.buyExchangeRate,
+              )
               : setQoutedTokenAmount(
-                  amount / currentExchangeRate.data.sellExchangeRate,
-                );
+                amount / currentExchangeRate.data.sellExchangeRate,
+              );
           }
         }}
         label={
@@ -145,11 +153,11 @@ export default function Swap({ swapType }: SwapProps) {
             {
               swapType === "Buy"
                 ? setQoutedFiatAmount(
-                    amount * currentExchangeRate.data.buyExchangeRate,
-                  )
+                  amount * currentExchangeRate.data.buyExchangeRate,
+                )
                 : setQoutedFiatAmount(
-                    amount * currentExchangeRate.data.sellExchangeRate,
-                  );
+                  amount * currentExchangeRate.data.sellExchangeRate,
+                );
             }
           }
         }}
