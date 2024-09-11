@@ -194,6 +194,14 @@ export default function Swap({ swapType }: SwapProps) {
             value: "4202",
             label: "LISK SEPOLIA",
           },
+          {
+            value: "10",
+            label: "Optimism",
+          },
+          {
+            value: "8453",
+            label: "Base",
+          },
         ]}
         renderOption={({ option }) => (
           <div
@@ -267,11 +275,13 @@ export default function Swap({ swapType }: SwapProps) {
                 src={
                   option.value === "10"
                     ? "https://icons.llamao.fi/icons/chains/rsz_optimism.jpg"
-                    : option.value === "4202"
-                      ? "https://cryptologos.cc/logos/lisk-lsk-logo.png?v=033"
-                      : option.value === "1135"
+                    : option.value === "8453"
+                      ? "/images/base.png"
+                      : option.value === "4202"
                         ? "https://cryptologos.cc/logos/lisk-lsk-logo.png?v=033"
-                        : "https://chainlist.org/unknown-logo.png"
+                        : option.value === "1135"
+                          ? "https://cryptologos.cc/logos/lisk-lsk-logo.png?v=033"
+                          : "https://chainlist.org/unknown-logo.png"
                 }
                 className=" object-contain"
               />

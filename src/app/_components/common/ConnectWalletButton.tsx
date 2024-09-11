@@ -2,7 +2,13 @@ import { thirdwebFrontendClient } from "@/utils/thirdweb";
 import { useComputedColorScheme } from "@mantine/core";
 import { ConnectButton } from "thirdweb/react";
 import { createWallet, embeddedWallet } from "thirdweb/wallets";
-import { defineChain, optimismSepolia } from "thirdweb/chains";
+import {
+  base,
+  baseSepolia,
+  defineChain,
+  optimism,
+  optimismSepolia,
+} from "thirdweb/chains";
 import { notifications } from "@mantine/notifications";
 
 interface ConnectWalletButtonProps {
@@ -23,7 +29,14 @@ export const ConnectWalletButton = ({
       <ConnectButton
         client={thirdwebFrontendClient}
         chain={defineChain(1135)}
-        chains={[defineChain(4202), defineChain(1135)]}
+        chains={[
+          defineChain(4202),
+          defineChain(1135),
+          optimism,
+          optimismSepolia,
+          base,
+          baseSepolia,
+        ]}
         wallets={[
           embeddedWallet(),
           createWallet("com.binance"),
