@@ -179,6 +179,7 @@ export default function Swap({ swapType }: SwapProps) {
         size="xl"
         className={`${swapType === "Sell" ? "  order-first" : ""} w-full text-xs`}
       />
+
       <Select
         value={settlementBlockchain?.toString()}
         defaultValue={"LISK SEPOLIA"}
@@ -188,7 +189,7 @@ export default function Swap({ swapType }: SwapProps) {
         data={[
           {
             value: "1135",
-            label: "LISK ",
+            label: "LISK",
           },
           {
             value: "4202",
@@ -278,9 +279,9 @@ export default function Swap({ swapType }: SwapProps) {
                     : option.value === "8453"
                       ? "/images/base.png"
                       : option.value === "4202"
-                        ? "https://cryptologos.cc/logos/lisk-lsk-logo.png?v=033"
+                        ? "/images/lisk.png"
                         : option.value === "1135"
-                          ? "https://cryptologos.cc/logos/lisk-lsk-logo.png?v=033"
+                          ? "/images/lisk.png"
                           : "https://chainlist.org/unknown-logo.png"
                 }
                 className=" object-contain"
