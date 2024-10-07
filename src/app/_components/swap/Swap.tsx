@@ -96,11 +96,13 @@ export default function Swap({ swapType }: SwapProps) {
   }
   return (
     <form className="flex flex-col gap-y-2    pb-4 sm:w-[30rem] sm:px-4">
-      <button onClick={async (e) => {
+      
+      {/* <button onClick={async (e) => {
         e.preventDefault();
         const res = await initializeTransaction("ukokjnr@gmail.com", 200000);
         console.log(res);
-      }}>Pay Naira</button>
+      }}>Pay Naira</button> */}
+
       <NumberInput
         value={qoutedFiatAmount}
         onChange={(val) => {
