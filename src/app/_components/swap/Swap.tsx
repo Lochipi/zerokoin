@@ -16,7 +16,7 @@ import { modals } from "@mantine/modals";
 import { useRouter } from "next/navigation";
 import { ORDERS_PAGE } from "@/utils/constants";
 import Link from "next/link";
-import PaystackPop from '@paystack/inline-js';
+import { initializeTransaction } from "./fetchData";
 
 interface SwapProps {
   swapType: "Buy" | "Sell";
@@ -51,11 +51,6 @@ export default function Swap({ swapType }: SwapProps) {
     },
   });
 
-  // Call the initialize payment endpoint to get the access code
-  const completePaystackTransaction = (access_code: string) => {
-    const popup = new PaystackPop()
-    popup.resumeTransaction(access_code)
-  }
 
   function submitNewOrder() {
     if (
@@ -101,6 +96,11 @@ export default function Swap({ swapType }: SwapProps) {
   }
   return (
     <form className="flex flex-col gap-y-2    pb-4 sm:w-[30rem] sm:px-4">
+      <button onClick={async (e) => {
+        e.preventDefault();
+        const res = await initializeTransaction("ukokjnr@gmail.com", 200000);
+        console.log(res);
+      }}>Pay Naira</button>
       <NumberInput
         value={qoutedFiatAmount}
         onChange={(val) => {
