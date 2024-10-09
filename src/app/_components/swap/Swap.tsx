@@ -27,8 +27,12 @@ export default function Swap({ swapType }: SwapProps) {
   >(84532);
   const storeSnapshot = useSnapshot(globalStore);
   const router = useRouter();
-  const currentExchangeRate =
-    api.exchangeRates.getCurrentExchangeRate.useQuery();
+  const currentExchangeRate = api.exchangeRates.getCurrentExchangeRate.useQuery(
+    undefined,
+    {
+      staleTime: 1000 * 60 * 5,
+    },
+  );
   const createNewOrder = api.orders.createNewOrder.useMutation({
     onSettled(data, error) {
       if (data) {
@@ -241,7 +245,7 @@ export default function Swap({ swapType }: SwapProps) {
                 ),
               });
             }}
-            className=" flex w-full flex-col gap-y-2"
+            className="  mb-4 flex w-full flex-col gap-y-2"
           >
             <div className=" flex w-full items-center justify-between">
               <Avatar
@@ -274,26 +278,6 @@ export default function Swap({ swapType }: SwapProps) {
         label={<p className=" text-xs">Select blockchain Network</p>}
       />
 
-      <SegmentedControl
-        size="md"
-        title={
-          swapType === "Buy"
-            ? "Wallet recieving tokens"
-            : "Wallet sending tokens"
-        }
-        data={[
-          { label: "My Wallet", value: "Wallet" },
-          { label: "Binance Wallet", value: "Binance" },
-        ]}
-        value={storeSnapshot.walletChoice}
-        onChange={(value) =>
-          (globalStore.walletChoice = value as "Binance" | "Wallet")
-        }
-        className=" my-2 "
-        transitionDuration={500}
-        transitionTimingFunction="linear"
-      />
-
       <Button
         loading={createNewOrder.isLoading || currentExchangeRate.isLoading}
         disabled={createNewOrder.isLoading || !currentExchangeRate.data}
@@ -302,6 +286,7 @@ export default function Swap({ swapType }: SwapProps) {
         }}
         color="green"
         size="lg"
+        className=" mt-4"
       >
         {`${swapType} ${globalStore.selectedToken}`}
       </Button>
