@@ -65,10 +65,7 @@ export default function Swap({ swapType }: SwapProps) {
           swapType == "Buy"
             ? currentExchangeRate.data.buyExchangeRate
             : currentExchangeRate.data.sellExchangeRate,
-        walletAddressChoice:
-          globalStore.walletChoice === "Binance"
-            ? "BINANCEWALLETADDRESS"
-            : "SELFCUSTODIALWALLET",
+        walletAddressChoice: "SELFCUSTODIALWALLET",
         transactionFee: 0,
         settlementBlockchain: settlementBlockchain,
       });
