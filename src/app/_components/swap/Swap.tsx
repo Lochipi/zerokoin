@@ -185,20 +185,12 @@ export default function Swap({ swapType }: SwapProps) {
         }
         data={[
           {
-            value: "1135",
-            label: "LISK",
-          },
-          {
-            value: "4202",
-            label: "LISK SEPOLIA",
-          },
-          {
-            value: "10",
-            label: "Optimism",
-          },
-          {
             value: "8453",
-            label: "Base",
+            label: "BASE MAINNET",
+          },
+          {
+            value: "84532",
+            label: "BASE SEPOLIA",
           },
         ]}
         renderOption={({ option }) => (
@@ -215,9 +207,7 @@ export default function Swap({ swapType }: SwapProps) {
                     </div>
                     <div className=" flex  w-full items-center justify-between">
                       <span>Native token</span>
-                      <span>
-                        {option.label === "BNB SMART CHAIN" ? "BNB" : "ETH"}
-                      </span>
+                      <span>ETH</span>
                     </div>
                     {storeSnapshot.orderType === "Sell" && (
                       <div className=" flex  w-full items-center justify-between">
@@ -242,25 +232,11 @@ export default function Swap({ swapType }: SwapProps) {
                         Available Liquidity
                       </span>
                       <span>
-                        {option.label === "LISK SEPOLIA"
+                        {option.label === "BASE SEPOLIA"
                           ? `1000+ ${storeSnapshot.selectedToken}`
                           : `0 ${storeSnapshot.selectedToken}`}
                       </span>
                     </div>
-                    {storeSnapshot.walletChoice === "Wallet" && (
-                      <div className=" mt-8">
-                        <p className=" text-xs">
-                          {storeSnapshot.orderType === "Buy"
-                            ? "If you prefer a blockchain network not yet supported by Zerokoin"
-                            : "If you have tokens on a blockchain network not yet supported by Zerokoin"}
-                        </p>
-                        <Link href="https://stargate.finance/transfer">
-                          <Button className=" w-full">
-                            Bridge your tokens
-                          </Button>
-                        </Link>
-                      </div>
-                    )}
                   </div>
                 ),
               });
@@ -273,7 +249,7 @@ export default function Swap({ swapType }: SwapProps) {
                 src={
                   option.value === "10"
                     ? "https://icons.llamao.fi/icons/chains/rsz_optimism.jpg"
-                    : option.value === "8453"
+                    : option.value === "8453" || option.value === "84532"
                       ? "/images/base.png"
                       : option.value === "4202"
                         ? "/images/lisk.png"
