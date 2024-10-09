@@ -1,4 +1,5 @@
 import { globalStore } from "@/stores";
+import { supportedFiatCurrencies } from "@/utils/constants";
 import { Image, Menu, Paper } from "@mantine/core";
 import React from "react";
 import { IoMdArrowDropdown } from "react-icons/io";
@@ -31,12 +32,12 @@ export default function SelectFiatCurrency() {
         </Paper>
       </Menu.Target>
       <Menu.Dropdown className=" ">
-        {["KES", "NGN"].map((token) => (
+        {supportedFiatCurrencies.map((token) => (
           <Menu.Item
             className=" h-10 text-sm"
             key={token}
             onClick={() => {
-              globalStore.selectedFiatCurrency = token as "KES" | "NGN";
+              globalStore.selectedFiatCurrency = token;
             }}
             leftSection={
               <Image

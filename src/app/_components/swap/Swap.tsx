@@ -16,6 +16,7 @@ import { useRouter } from "next/navigation";
 import { ORDERS_PAGE } from "@/utils/constants";
 import Link from "next/link";
 import SelectFiatCurrency from "./SelectFiatCurrency";
+import SelectCryptoToken from "./SelectCryptoToken";
 
 interface SwapProps {
   swapType: "Buy" | "Sell";
@@ -175,7 +176,7 @@ export default function Swap({ swapType }: SwapProps) {
         hideControls
         thousandSeparator
         rightSectionWidth="fit"
-        rightSection={<SelectToken supportedTokens={["USDC", "USDT"]} />}
+        rightSection={<SelectCryptoToken />}
         size="xl"
         className={`${swapType === "Sell" ? "  order-first" : ""} w-full text-xs`}
       />
