@@ -57,6 +57,7 @@ export default function Swap({ swapType }: SwapProps) {
       createNewOrder.mutate({
         orderType: globalStore.orderType == "Buy" ? "BUY" : "SELL",
         swapToken: globalStore.selectedCryptoToken,
+        fiatCurrency: globalStore.selectedFiatCurrency,
         qoutedTokenAmount: parseFloat(qoutedTokenAmount.toFixed(8)),
         qoutedFiatAmount: parseFloat(qoutedFiatAmount.toFixed(2)),
         qoutedExchangeRate:
