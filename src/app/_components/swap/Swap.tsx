@@ -24,7 +24,7 @@ export default function Swap({ swapType }: SwapProps) {
   const [qoutedTokenAmount, setQoutedTokenAmount] = useState<number>(0);
   const [settlementBlockchain, setSettlementBlockchain] = useState<
     number | null
-  >(4202);
+  >(84532);
   const storeSnapshot = useSnapshot(globalStore);
   const router = useRouter();
   const currentExchangeRate =
