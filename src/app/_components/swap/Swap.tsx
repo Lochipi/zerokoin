@@ -15,6 +15,7 @@ import { modals } from "@mantine/modals";
 import { useRouter } from "next/navigation";
 import { ORDERS_PAGE } from "@/utils/constants";
 import Link from "next/link";
+import SelectFiatCurrency from "./SelectFiatCurrency";
 
 interface SwapProps {
   swapType: "Buy" | "Sell";
@@ -62,7 +63,7 @@ export default function Swap({ swapType }: SwapProps) {
     ) {
       createNewOrder.mutate({
         orderType: globalStore.orderType == "Buy" ? "BUY" : "SELL",
-        swapToken: globalStore.selectedToken,
+        swapToken: globalStore.selectedCryptoToken,
         qoutedTokenAmount: parseFloat(qoutedTokenAmount.toFixed(8)),
         qoutedFiatAmount: parseFloat(qoutedFiatAmount.toFixed(2)),
         qoutedExchangeRate:
@@ -131,9 +132,7 @@ export default function Swap({ swapType }: SwapProps) {
         hideControls
         thousandSeparator=","
         rightSectionWidth="fit"
-        rightSection={
-          <SelectToken isKenyanShilling supportedTokens={["KES", "NGN"]} />
-        }
+        rightSection={<SelectFiatCurrency />}
         size="xl"
         className=" w-full text-xs"
       />
