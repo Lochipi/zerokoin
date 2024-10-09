@@ -12,6 +12,7 @@ model Order {
   id                       String       @id @default(uuid())
   userId                   String?
   orderType                OrderType
+  fiatCurrency             String
   swapToken                String
   qoutedTokenAmount        Float
   quotedFiatAmount         Float
@@ -34,11 +35,12 @@ model Order {
 }
 
 model ExchangeRate {
-  id               Int       @id @default(autoincrement())
+  id               Int                 @id @default(autoincrement())
+  currency         SupportedCurrencies
   buyExchangeRate  Float
   sellExchangeRate Float
-  createdAt        DateTime? @default(now())
-  updatedAt        DateTime? @updatedAt
+  createdAt        DateTime?           @default(now())
+  updatedAt        DateTime?           @updatedAt
 }
 
 model StkMessage {
@@ -77,4 +79,9 @@ enum StkStatus {
   PENDING
   SUCCESS
   CANCELLED
+}
+
+enum SupportedCurrencies {
+  KES
+  NGN
 }

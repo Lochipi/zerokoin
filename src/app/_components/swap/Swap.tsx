@@ -1,20 +1,14 @@
-import {
-  Avatar,
-  Button,
-  NumberInput,
-  SegmentedControl,
-  Select,
-} from "@mantine/core";
+import { Avatar, Button, NumberInput, Select } from "@mantine/core";
 import { useSnapshot } from "valtio";
 import React, { useState } from "react";
 import { globalStore } from "@/stores";
-import SelectToken from "./SelectToken";
 import { api } from "@/trpc/react";
 import { notifications } from "@mantine/notifications";
 import { modals } from "@mantine/modals";
 import { useRouter } from "next/navigation";
 import { ORDERS_PAGE } from "@/utils/constants";
-import Link from "next/link";
+import SelectFiatCurrency from "./SelectFiatCurrency";
+import SelectCryptoToken from "./SelectCryptoToken";
 
 interface SwapProps {
   swapType: "Buy" | "Sell";
@@ -24,11 +18,12 @@ export default function Swap({ swapType }: SwapProps) {
   const [qoutedTokenAmount, setQoutedTokenAmount] = useState<number>(0);
   const [settlementBlockchain, setSettlementBlockchain] = useState<
     number | null
-  >(4202);
+  >(84532);
   const storeSnapshot = useSnapshot(globalStore);
   const router = useRouter();
-  const currentExchangeRate =
-    api.exchangeRates.getCurrentExchangeRate.useQuery();
+  const currentExchangeRate = api.exchangeRates.getCurrentExchangeRate.useQuery(
+    { currency: storeSnapshot.selectedFiatCurrency === "KES" ? "KES" : "NGN" },
+  );
   const createNewOrder = api.orders.createNewOrder.useMutation({
     onSettled(data, error) {
       if (data) {
@@ -58,17 +53,15 @@ export default function Swap({ swapType }: SwapProps) {
     ) {
       createNewOrder.mutate({
         orderType: globalStore.orderType == "Buy" ? "BUY" : "SELL",
-        swapToken: globalStore.selectedToken,
+        swapToken: globalStore.selectedCryptoToken,
+        fiatCurrency: globalStore.selectedFiatCurrency,
         qoutedTokenAmount: parseFloat(qoutedTokenAmount.toFixed(8)),
         qoutedFiatAmount: parseFloat(qoutedFiatAmount.toFixed(2)),
         qoutedExchangeRate:
           swapType == "Buy"
             ? currentExchangeRate.data.buyExchangeRate
             : currentExchangeRate.data.sellExchangeRate,
-        walletAddressChoice:
-          globalStore.walletChoice === "Binance"
-            ? "BINANCEWALLETADDRESS"
-            : "SELFCUSTODIALWALLET",
+        walletAddressChoice: "SELFCUSTODIALWALLET",
         transactionFee: 0,
         settlementBlockchain: settlementBlockchain,
       });
@@ -130,9 +123,7 @@ export default function Swap({ swapType }: SwapProps) {
         hideControls
         thousandSeparator=","
         rightSectionWidth="fit"
-        rightSection={
-          <SelectToken isKenyanShilling supportedTokens={["KES", "NGN"]} />
-        }
+        rightSection={<SelectFiatCurrency />}
         size="xl"
         className=" w-full text-xs"
       />
@@ -162,11 +153,11 @@ export default function Swap({ swapType }: SwapProps) {
         description={
           storeSnapshot.orderType == "Buy" ? (
             <span className=" text-xs leading-[0.0]">
-              1 {storeSnapshot.selectedToken} ≈{" "}
+              1 {storeSnapshot.selectedCryptoToken} ≈{" "}
               {swapType === "Buy"
                 ? currentExchangeRate.data?.buyExchangeRate
                 : currentExchangeRate.data?.sellExchangeRate}{" "}
-              KES
+              {storeSnapshot.selectedFiatCurrency}
             </span>
           ) : undefined
         }
@@ -175,7 +166,7 @@ export default function Swap({ swapType }: SwapProps) {
         hideControls
         thousandSeparator
         rightSectionWidth="fit"
-        rightSection={<SelectToken supportedTokens={["USDC", "USDT"]} />}
+        rightSection={<SelectCryptoToken />}
         size="xl"
         className={`${swapType === "Sell" ? "  order-first" : ""} w-full text-xs`}
       />
@@ -188,20 +179,12 @@ export default function Swap({ swapType }: SwapProps) {
         }
         data={[
           {
-            value: "1135",
-            label: "LISK",
-          },
-          {
-            value: "4202",
-            label: "LISK SEPOLIA",
-          },
-          {
-            value: "10",
-            label: "Optimism",
-          },
-          {
             value: "8453",
-            label: "Base",
+            label: "BASE MAINNET",
+          },
+          {
+            value: "84532",
+            label: "BASE SEPOLIA",
           },
         ]}
         renderOption={({ option }) => (
@@ -218,9 +201,7 @@ export default function Swap({ swapType }: SwapProps) {
                     </div>
                     <div className=" flex  w-full items-center justify-between">
                       <span>Native token</span>
-                      <span>
-                        {option.label === "BNB SMART CHAIN" ? "BNB" : "ETH"}
-                      </span>
+                      <span>ETH</span>
                     </div>
                     {storeSnapshot.orderType === "Sell" && (
                       <div className=" flex  w-full items-center justify-between">
@@ -245,30 +226,16 @@ export default function Swap({ swapType }: SwapProps) {
                         Available Liquidity
                       </span>
                       <span>
-                        {option.label === "LISK SEPOLIA"
+                        {option.label === "BASE SEPOLIA"
                           ? `1000+ ${storeSnapshot.selectedToken}`
                           : `0 ${storeSnapshot.selectedToken}`}
                       </span>
                     </div>
-                    {storeSnapshot.walletChoice === "Wallet" && (
-                      <div className=" mt-8">
-                        <p className=" text-xs">
-                          {storeSnapshot.orderType === "Buy"
-                            ? "If you prefer a blockchain network not yet supported by Zerokoin"
-                            : "If you have tokens on a blockchain network not yet supported by Zerokoin"}
-                        </p>
-                        <Link href="https://stargate.finance/transfer">
-                          <Button className=" w-full">
-                            Bridge your tokens
-                          </Button>
-                        </Link>
-                      </div>
-                    )}
                   </div>
                 ),
               });
             }}
-            className=" flex w-full flex-col gap-y-2"
+            className="  mb-4 flex w-full flex-col gap-y-2"
           >
             <div className=" flex w-full items-center justify-between">
               <Avatar
@@ -276,7 +243,7 @@ export default function Swap({ swapType }: SwapProps) {
                 src={
                   option.value === "10"
                     ? "https://icons.llamao.fi/icons/chains/rsz_optimism.jpg"
-                    : option.value === "8453"
+                    : option.value === "8453" || option.value === "84532"
                       ? "/images/base.png"
                       : option.value === "4202"
                         ? "/images/lisk.png"
@@ -301,26 +268,6 @@ export default function Swap({ swapType }: SwapProps) {
         label={<p className=" text-xs">Select blockchain Network</p>}
       />
 
-      <SegmentedControl
-        size="md"
-        title={
-          swapType === "Buy"
-            ? "Wallet recieving tokens"
-            : "Wallet sending tokens"
-        }
-        data={[
-          { label: "My Wallet", value: "Wallet" },
-          { label: "Binance Wallet", value: "Binance" },
-        ]}
-        value={storeSnapshot.walletChoice}
-        onChange={(value) =>
-          (globalStore.walletChoice = value as "Binance" | "Wallet")
-        }
-        className=" my-2 "
-        transitionDuration={500}
-        transitionTimingFunction="linear"
-      />
-
       <Button
         loading={createNewOrder.isLoading || currentExchangeRate.isLoading}
         disabled={createNewOrder.isLoading || !currentExchangeRate.data}
@@ -329,6 +276,7 @@ export default function Swap({ swapType }: SwapProps) {
         }}
         color="green"
         size="lg"
+        className=" mt-4"
       >
         {`${swapType} ${globalStore.selectedToken}`}
       </Button>

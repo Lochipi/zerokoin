@@ -7,6 +7,7 @@ export const ordersRouter = createTRPCRouter({
       z.object({
         orderType: z.enum(["BUY", "SELL"]),
         swapToken: z.string(),
+        fiatCurrency: z.string(),
         qoutedTokenAmount: z.number(),
         qoutedFiatAmount: z.number(),
         qoutedExchangeRate: z.number(),
@@ -24,6 +25,7 @@ export const ordersRouter = createTRPCRouter({
         data: {
           orderType: input.orderType,
           swapToken: input.swapToken,
+          fiatCurrency: input.fiatCurrency,
           qoutedTokenAmount: input.qoutedTokenAmount,
           quotedFiatAmount: input.qoutedFiatAmount,
           qoutedExchangeRate: input.qoutedExchangeRate,
