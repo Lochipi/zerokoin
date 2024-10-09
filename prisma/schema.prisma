@@ -12,6 +12,7 @@ model Order {
   id                       String       @id @default(uuid())
   userId                   String?
   orderType                OrderType
+  fiatCurrency             String
   swapToken                String
   qoutedTokenAmount        Float
   quotedFiatAmount         Float

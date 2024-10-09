@@ -1,20 +1,12 @@
-import {
-  Avatar,
-  Button,
-  NumberInput,
-  SegmentedControl,
-  Select,
-} from "@mantine/core";
+import { Avatar, Button, NumberInput, Select } from "@mantine/core";
 import { useSnapshot } from "valtio";
 import React, { useState } from "react";
 import { globalStore } from "@/stores";
-import SelectToken from "./SelectToken";
 import { api } from "@/trpc/react";
 import { notifications } from "@mantine/notifications";
 import { modals } from "@mantine/modals";
 import { useRouter } from "next/navigation";
 import { ORDERS_PAGE } from "@/utils/constants";
-import Link from "next/link";
 import SelectFiatCurrency from "./SelectFiatCurrency";
 import SelectCryptoToken from "./SelectCryptoToken";
 
@@ -30,7 +22,7 @@ export default function Swap({ swapType }: SwapProps) {
   const storeSnapshot = useSnapshot(globalStore);
   const router = useRouter();
   const currentExchangeRate = api.exchangeRates.getCurrentExchangeRate.useQuery(
-    undefined,
+    { currency: storeSnapshot.selectedFiatCurrency === "KES" ? "KES" : "NGN" },
     {
       staleTime: 1000 * 60 * 5,
     },
