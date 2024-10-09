@@ -35,7 +35,7 @@ model Order {
 
 model ExchangeRate {
   id               Int                 @id @default(autoincrement())
-  currency         SupportedCurrencies @default(KES)
+  currency         SupportedCurrencies
   buyExchangeRate  Float
   sellExchangeRate Float
   createdAt        DateTime?           @default(now())
