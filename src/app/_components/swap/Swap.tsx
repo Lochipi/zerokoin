@@ -23,9 +23,6 @@ export default function Swap({ swapType }: SwapProps) {
   const router = useRouter();
   const currentExchangeRate = api.exchangeRates.getCurrentExchangeRate.useQuery(
     { currency: storeSnapshot.selectedFiatCurrency === "KES" ? "KES" : "NGN" },
-    {
-      staleTime: 1000 * 60 * 5,
-    },
   );
   const createNewOrder = api.orders.createNewOrder.useMutation({
     onSettled(data, error) {
@@ -156,11 +153,11 @@ export default function Swap({ swapType }: SwapProps) {
         description={
           storeSnapshot.orderType == "Buy" ? (
             <span className=" text-xs leading-[0.0]">
-              1 {storeSnapshot.selectedToken} ≈{" "}
+              1 {storeSnapshot.selectedCryptoToken} ≈{" "}
               {swapType === "Buy"
                 ? currentExchangeRate.data?.buyExchangeRate
                 : currentExchangeRate.data?.sellExchangeRate}{" "}
-              KES
+              {storeSnapshot.selectedFiatCurrency}
             </span>
           ) : undefined
         }
