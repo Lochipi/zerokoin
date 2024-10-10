@@ -11,6 +11,10 @@ export function getBlockchainName(chainId: number): string {
     return "BASE MAINNET";
   } else if (chainId === 11155420) {
     return "OP SEPOLIA";
+  } else if (chainId === 8453) {
+    return "BASE MAINNET";
+  } else if (chainId === 84532) {
+    return "BASE SEPOLIA";
   } else {
     return "EVM CHAIN";
   }
