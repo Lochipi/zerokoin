@@ -22,6 +22,10 @@ export const ConnectWalletButton = ({
     <div className="">
       <ConnectButton
         client={thirdwebFrontendClient}
+        accountAbstraction={{
+          chain: baseSepolia,
+          sponsorGas: true,
+        }}
         chain={baseSepolia}
         chains={[base, baseSepolia]}
         wallets={[
