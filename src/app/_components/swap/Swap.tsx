@@ -270,6 +270,7 @@ export default function Swap({ swapType }: SwapProps) {
 
       <Button
         loading={createNewOrder.isLoading || currentExchangeRate.isLoading}
+        loaderProps={{ type: "dots" }}
         disabled={createNewOrder.isLoading || !currentExchangeRate.data}
         onClick={async () => {
           submitNewOrder();
