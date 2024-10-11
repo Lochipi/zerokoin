@@ -1,6 +1,7 @@
 import axios, { type AxiosError, type AxiosResponse } from "axios";
 import { TRPCError } from "@trpc/server";
 import getAccessToken from "./getAccessToken";
+import { env } from "@/env";
 
 interface B2CRequestParams {
   originatorConversationId: string;
@@ -42,8 +43,8 @@ export async function makeB2CPayment(
         PartyA: 600982,
         PartyB: params.partyB,
         Remarks: params.remarks,
-        QueueTimeOutURL: process.env.MPESA_BTOC_TIMEOUT_URL,
-        ResultURL: process.env.MPESA_BTOC_CALLBACK_URL,
+        QueueTimeOutURL: env.MPESA_BTOC_TIMEOUT_URL,
+        ResultURL: env.MPESA_BTOC_CALLBACK_URL,
         Occasion: params.occasion,
       },
       {

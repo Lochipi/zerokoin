@@ -4,6 +4,7 @@ import axios, {
   type AxiosError,
 } from "axios";
 import getAccessToken from "./getAccessToken";
+import { env } from "@/env";
 
 interface STKPushQueryRequest {
   BusinessShortCode: number;
@@ -34,11 +35,11 @@ export async function sendSTKPushQueryRequest({
     });
 
     const passkey = sandbox
-      ? process.env.MPESA_SANDBOX_CONSUMER_PASSKEY!
+      ? env.MPESA_SANDBOX_CONSUMER_PASSKEY
       : process.env.MPESA_LIVE_CONSUMER_PASSKEY!;
     const businessShortCode = parseInt(
       sandbox
-        ? process.env.MPESA_SANDBOX_SHORT_CODE!
+        ? env.MPESA_SANDBOX_SHORT_CODE
         : process.env.MPESA_LIVE_SHORT_CODE!,
     );
     const stkQueryPassword = Buffer.from(

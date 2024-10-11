@@ -3,6 +3,7 @@ import { thirdwebServerClient } from "./thirdweb";
 import { transfer } from "thirdweb/extensions/erc20";
 import { getContract, sendAndConfirmTransaction } from "thirdweb";
 import { baseSepolia } from "thirdweb/chains";
+import { env } from "@/env";
 
 export async function sendStableCoinTokenToWalletAddress({
   toAddress,
@@ -14,7 +15,7 @@ export async function sendStableCoinTokenToWalletAddress({
 }) {
   const liquidityWallet = privateKeyAccount({
     client: thirdwebServerClient,
-    privateKey: process.env.LIQUIDITY_ACCOUNT_PRIVATE_KEY!,
+    privateKey: env.LIQUIDITY_ACCOUNT_PRIVATE_KEY,
   });
   const LiskSepoliaUSDCTestContract = getContract({
     client: thirdwebServerClient,

@@ -5,6 +5,7 @@ import sendStkPush from "@/server/utils/send-stk-push";
 import sendSTKPushQueryRequest from "@/server/utils/query-stk-status";
 import { sendStableCoinTokenToWalletAddress } from "@/server/utils/sendtokenstowallet";
 import { TRPCError } from "@trpc/server";
+import { env } from "@/env";
 
 export const walletBuyOrderRouter = createTRPCRouter({
   intiateWalletBuyOrder: publicProcedure
@@ -41,7 +42,7 @@ export const walletBuyOrderRouter = createTRPCRouter({
                 : Math.ceil(orderDetails.quotedFiatAmount).toString(),
             partyA: input.mpesaPaymentNumber,
             phoneNumber: input.mpesaPaymentNumber,
-            callBackURL: process.env.MPESA_CTOB_CALLBACK_URL!,
+            callBackURL: env.MPESA_CTOB_CALLBACK_URL,
             accountReference: "Zerokoin",
             transactionDesc: "Buy Order",
             sandbox: true,
