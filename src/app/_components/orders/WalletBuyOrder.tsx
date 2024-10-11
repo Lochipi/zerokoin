@@ -1,11 +1,14 @@
 "use client";
 import { api } from "@/trpc/react";
 import {
+  Accordion,
+  ActionIcon,
   Button,
   Card,
   Image,
   NumberFormatter,
   Paper,
+  Popover,
   SegmentedControl,
   TextInput,
 } from "@mantine/core";
@@ -13,23 +16,36 @@ import React, { useEffect, useState } from "react";
 import { IoSwapVertical } from "react-icons/io5";
 import { ConnectWalletButton } from "../common/ConnectWalletButton";
 import { notifications } from "@mantine/notifications";
-import { useActiveAccount } from "thirdweb/react";
+import {
+  useActiveAccount,
+  useActiveWalletConnectionStatus,
+} from "thirdweb/react";
 import { useRouter } from "next/navigation";
+
+import { TbWorldSearch } from "react-icons/tb";
+import useResolveBaseNameToWalletAddress from "@/utils/hooks/useResolveBaseNameToWalletAddress";
+import { FcInfo } from "react-icons/fc";
+import { getBlockchainName } from "@/utils/getBlockchainName";
 
 interface WalletOderProps {
   orderId: string;
 }
+
 export default function WalletBuyOrder({ orderId }: WalletOderProps) {
   const [mpesaPaymentNumber, setMpesaPaymentNumber] = useState<
     string | undefined
   >(undefined);
   const [walletType, setWalletType] = useState<"WALLET" | "BASENAME">("WALLET");
   const [basename, setBasename] = useState<string | undefined>(undefined);
+  const connectionStatus = useActiveWalletConnectionStatus();
   const account = useActiveAccount();
   const router = useRouter();
   const getOrderDetails = api.orders.getOrderDetails.useQuery({
     orderId: orderId,
   });
+
+  const { resolveBaseNameToWalletAddress, loading, resolvedAddress } =
+    useResolveBaseNameToWalletAddress();
 
   const intiateMpesaPayment = api.walletBuy.intiateWalletBuyOrder.useMutation({
     onSettled: (data, _, variables) => {
@@ -108,14 +124,19 @@ export default function WalletBuyOrder({ orderId }: WalletOderProps) {
 
   function handleMakePayment() {
     if (
-      account?.address &&
+      (account?.address ?? resolvedAddress) &&
       mpesaPaymentNumber &&
       mpesaPaymentNumber.length === 10 &&
       (!isNaN(Number(mpesaPaymentNumber)) ||
         mpesaPaymentNumber.startsWith("01"))
     ) {
       intiateMpesaPayment.mutate({
-        walletAddress: account.address,
+        walletAddress:
+          walletType === "WALLET" && account?.address
+            ? account?.address
+            : walletType === "BASENAME" && resolvedAddress
+              ? resolvedAddress
+              : "",
         orderId: orderId,
         mpesaPaymentNumber: "254" + mpesaPaymentNumber.slice(1),
       });
@@ -126,6 +147,13 @@ export default function WalletBuyOrder({ orderId }: WalletOderProps) {
       });
     }
   }
+  const handleResolve = async () => {
+    await resolveBaseNameToWalletAddress({
+      chainId: 8453,
+      basename: basename ?? "",
+    });
+  };
+
   useEffect(() => {
     if (checkStkPaymentStatus.isLoading) {
       notifications.hide("payment-loading");
@@ -219,6 +247,73 @@ export default function WalletBuyOrder({ orderId }: WalletOderProps) {
         value={mpesaPaymentNumber}
         onChange={(e) => setMpesaPaymentNumber(e.target.value)}
       />
+      <Accordion transitionDuration={1000} radius="xl">
+        <Accordion.Item value="details">
+          <Accordion.Control className=" h-fit">
+            Order details
+          </Accordion.Control>
+          <Accordion.Panel className=" flex flex-col gap-y-4 text-xs">
+            <Popover width="target" position="top" withArrow shadow="md">
+              <Popover.Target>
+                <div className=" flex items-center justify-between">
+                  <span className=" flex cursor-pointer items-center gap-x-2">
+                    Blockchain Network <FcInfo />
+                  </span>
+                  <span className="">
+                    {getBlockchainName(
+                      getOrderDetails.data?.settlementBlockchain ?? 0,
+                    )}
+                  </span>
+                </div>
+              </Popover.Target>
+              <Popover.Dropdown>
+                <div className="">
+                  The blockchain network on which the transcation will be
+                  completed
+                </div>
+              </Popover.Dropdown>
+            </Popover>
+            <Popover width="target" position="top" withArrow shadow="md">
+              <Popover.Target>
+                <div className=" flex items-center justify-between">
+                  <span className=" flex cursor-pointer items-center gap-x-2">
+                    Destination address
+                    <FcInfo />
+                  </span>
+                  <span className="">
+                    {connectionStatus === "connected" && walletType === "WALLET"
+                      ? `${account?.address.substring(0, 6)} ... ${account?.address.substring(account.address.length - 6)}`
+                      : walletType === "BASENAME" && resolvedAddress
+                        ? resolvedAddress.substring(0, 6) +
+                          " ... " +
+                          resolvedAddress.substring(resolvedAddress.length - 6)
+                        : ""}
+                  </span>
+                </div>
+              </Popover.Target>
+              <Popover.Dropdown>
+                <div className="">The wallet address recieving payment</div>
+              </Popover.Dropdown>
+            </Popover>
+            <Popover width="target" position="top" withArrow shadow="md">
+              <Popover.Target>
+                <div className=" flex items-center justify-between">
+                  <span className=" flex cursor-pointer items-center gap-x-2">
+                    Exchange rate
+                    <FcInfo />
+                  </span>
+                  <span className="">
+                    {` 1 ${getOrderDetails.data?.swapToken}  =  ${getOrderDetails.data?.qoutedExchangeRate} KES`}
+                  </span>
+                </div>
+              </Popover.Target>
+              <Popover.Dropdown>
+                <div className="">Exchange rate for buying crypto</div>
+              </Popover.Dropdown>
+            </Popover>
+          </Accordion.Panel>
+        </Accordion.Item>
+      </Accordion>
       <SegmentedControl
         value={walletType}
         onChange={(value) => setWalletType(value as "WALLET" | "BASENAME")}
@@ -229,7 +324,7 @@ export default function WalletBuyOrder({ orderId }: WalletOderProps) {
       />
 
       {(account?.address && walletType == "WALLET") ??
-      (walletType == "BASENAME" && basename?.length && basename.length > 5) ? (
+      (walletType == "BASENAME" && resolvedAddress) ? (
         getOrderDetails.data?.stkMessage?.stkStatus ? (
           <div className=" flex  items-center justify-center">
             <p>A payment request was intiatiated for this order</p>
@@ -261,8 +356,19 @@ export default function WalletBuyOrder({ orderId }: WalletOderProps) {
           value={basename}
           onChange={(e) => setBasename(e.target.value)}
           label={<p className=" text-xs">Basename</p>}
+          description={resolvedAddress ?? undefined}
           placeholder="johndoe.base.eth"
           size="lg"
+          rightSection={
+            <ActionIcon
+              onClick={() => {
+                void handleResolve();
+              }}
+              loading={loading}
+            >
+              <TbWorldSearch className=" cursor-pointer text-2xl" />
+            </ActionIcon>
+          }
         />
       )}
     </Paper>
