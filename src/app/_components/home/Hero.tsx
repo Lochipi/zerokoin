@@ -113,7 +113,7 @@ export const Hero = () => {
             variants={leftVariant}
           >
             <img
-              src="/images/lisk.png"
+              src="/images/base-logo-in-blue.svg"
               alt=""
               className=" h-20 w-20 object-cover"
             />
