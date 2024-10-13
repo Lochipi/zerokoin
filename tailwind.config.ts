@@ -4,6 +4,7 @@ import { withAnimations } from "animated-tailwindcss";
 
 const config = {
   content: ["./src/**/*.tsx"],
+  plugins: [],
   theme: {
     extend: {
       fontFamily: {
@@ -11,7 +12,6 @@ const config = {
       },
     },
   },
-  plugins: [],
 } satisfies Config;
 
 export default withAnimations(config);
