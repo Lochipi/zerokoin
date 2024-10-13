@@ -33,7 +33,7 @@ export default function Features() {
       <div className=" mx-auto mt-8 max-w-7xl grid-cols-2 gap-6 space-y-6 py-8 sm:grid sm:space-y-0 lg:grid-cols-3">
         <FeatureCard
           title="Automated"
-          description="Seamlessly integrating with M-Pesa, Binance, and web wallets, transactions are automated for effortless crypto-to-Mpesa conversions."
+          description="Seamlessly integrating with M-Pesa, Paystack, and smart wallets, transactions are automated for effortless crypto-to-Mpesa conversions."
           icon={
             <RiSecurePaymentLine
               size={24}

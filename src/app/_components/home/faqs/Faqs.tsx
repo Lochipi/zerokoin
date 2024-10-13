@@ -30,7 +30,7 @@ export default function Faqs() {
                 <Accordion.Control>How does Zerokoin work?</Accordion.Control>
                 <Accordion.Panel>
                   Zerokoin simplifies the process of buying or selling crypto
-                  using M-Pesa by intergrating with M-Pesa, Binance, and web
+                  using M-Pesa by intergrating with M-Pesa, Paystack, and smart
                   wallets APIs to offer automated swaps.
                 </Accordion.Panel>
               </Accordion.Item>
@@ -40,7 +40,7 @@ export default function Faqs() {
                 value="supported-crypto"
               >
                 <Accordion.Control>
-                  What cryptocurrencies can I trade on Zerokoin?
+                  What cryptocurrencies can I access on Zerokoin?
                 </Accordion.Control>
                 <Accordion.Panel>
                   At the moment, Zerokoin primarily supports stablecoins for
@@ -53,22 +53,22 @@ export default function Faqs() {
               </Accordion.Item>
               <Accordion.Item
                 className={`${classes.item} ${accordionClass}`}
-                value="fees"
+                value="base-names"
               >
                 <Accordion.Control>
-                  Are there any hidden fees on Zerokoin?
+                  What are Basenames and how can I uses them
                 </Accordion.Control>
                 <Accordion.Panel>
-                  No, Zerokoin is committed to transparency when it comes to
-                  fees. We offer competitive rates closely aligned with the
-                  current USD/KES exchange rate, ensuring that users have full
-                  visibility into the costs of their transactions. There are no
-                  hidden fees – what you see is what you get.
+                  On the Base blockchain, basenames are simplified identifiers
+                  like human-readable names for wallet addresses or tokenized
+                  assets. They enhance user experience by replacing complex
+                  cryptographic strings with easy-to-remember names, such as ENS
+                  domains (yourname.base.eth) for Ethereum addresses.
                 </Accordion.Panel>
               </Accordion.Item>
               <Accordion.Item
                 className={`${classes.item} ${accordionClass}`}
-                value="kyc"
+                value="smart-wallets"
               >
                 <Accordion.Control>What are smart wallets?</Accordion.Control>
                 <Accordion.Panel>
@@ -86,7 +86,7 @@ export default function Faqs() {
 
               <Accordion.Item
                 className={`${classes.item} ${accordionClass}`}
-                value="failed-transactions"
+                value="gasless-transactions"
               >
                 <Accordion.Control>
                   What are gasless transactions?
