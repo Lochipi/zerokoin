@@ -3,11 +3,12 @@ import { Image, Accordion, Grid, Title } from "@mantine/core";
 import classes from "./Faqs.module.css";
 
 export default function Faqs() {
-  const accordionClass = "border-hover hover:border-yellow-400 focus:border-yellow-400";
+  const accordionClass =
+    "border-hover hover:border-yellow-400 focus:border-yellow-400";
 
   return (
     <div className="">
-      <div className="lg:flex lg:justify-center lg:w-screen pt-12 lg:pt-22">
+      <div className="lg:pt-22 pt-12 lg:flex lg:w-screen lg:justify-center">
         <Grid id="faq-grid" gutter={50} className="lg:w-[1200px]">
           <Grid.Col span={{ base: 12, md: 6 }}>
             <Image src="/images/faqs.svg" alt="Frequently Asked Questions" />
@@ -22,7 +23,10 @@ export default function Faqs() {
               variant="separated"
               transitionDuration={500}
             >
-              <Accordion.Item className={`${classes.item} ${accordionClass}`} value="working">
+              <Accordion.Item
+                className={`${classes.item} ${accordionClass}`}
+                value="working"
+              >
                 <Accordion.Control>How does Zerokoin work?</Accordion.Control>
                 <Accordion.Panel>
                   Zerokoin simplifies the process of buying or selling crypto
@@ -31,7 +35,10 @@ export default function Faqs() {
                 </Accordion.Panel>
               </Accordion.Item>
 
-              <Accordion.Item className={`${classes.item} ${accordionClass}`} value="supported-crypto">
+              <Accordion.Item
+                className={`${classes.item} ${accordionClass}`}
+                value="supported-crypto"
+              >
                 <Accordion.Control>
                   What cryptocurrencies can I trade on Zerokoin?
                 </Accordion.Control>
@@ -44,7 +51,10 @@ export default function Faqs() {
                   cryptocurrencies for your trading needs.
                 </Accordion.Panel>
               </Accordion.Item>
-              <Accordion.Item className={`${classes.item} ${accordionClass}`} value="fees">
+              <Accordion.Item
+                className={`${classes.item} ${accordionClass}`}
+                value="fees"
+              >
                 <Accordion.Control>
                   Are there any hidden fees on Zerokoin?
                 </Accordion.Control>
@@ -56,20 +66,21 @@ export default function Faqs() {
                   hidden fees – what you see is what you get.
                 </Accordion.Panel>
               </Accordion.Item>
-              <Accordion.Item className={`${classes.item} ${accordionClass}`} value="kyc">
-                <Accordion.Control>
-                  Do I need to complete KYC to use Zerokoin ?
-                </Accordion.Control>
+              <Accordion.Item
+                className={`${classes.item} ${accordionClass}`}
+                value="kyc"
+              >
+                <Accordion.Control>What are smart wallets?</Accordion.Control>
                 <Accordion.Panel>
-                  For users using our Binance intergration, KYC (Know Your
-                  Customer) requirements are handled by Binance and M-Pesa,
-                  meaning there&apos;s no need for additional KYC when using
-                  Zerokoin. However, for users with self-custodial wallets,
-                  minimal KYC is required to ensure compliance with regulatory
-                  standards and enhance security measures. Rest assured,
-                  Zerokoin aims to keep the KYC process as streamlined and
-                  user-friendly as possible while prioritizing the safety and
-                  security of all transactions.
+                  A smart wallet is an upgraded crypto wallet that uses smart
+                  contracts to offer advanced features like multi-signature
+                  security, spending limits, and recovery options. Unlike
+                  traditional wallets (EOAs), which rely on a single private
+                  key, smart wallets provide more control, automation, and
+                  flexibility. While EOAs are simpler with lower fees, smart
+                  wallets give you enhanced security and peace of mind. Take
+                  charge of your crypto with smart wallets—your funds, your
+                  rules!
                 </Accordion.Panel>
               </Accordion.Item>
 
@@ -78,14 +89,15 @@ export default function Faqs() {
                 value="failed-transactions"
               >
                 <Accordion.Control>
-                  What happens if there&apos;s an issue with my transaction?
+                  What are gasless transactions?
                 </Accordion.Control>
                 <Accordion.Panel>
-                  In the rare event of an issue with your transaction, our
-                  customer support team is here to assist you. Simply reach out
-                  to us via our active communications channels, and we&apos;ll
-                  work diligently to resolve any issues and ensure that your
-                  transaction is completed successfully.
+                  Gasless transactions let you interact with the blockchain
+                  without paying fees—these are covered by a third party or
+                  smart contract. Unlike traditional transactions that require
+                  gas fees, gasless transactions offer a smoother, more
+                  user-friendly experience. Enjoy the freedom of fee-free
+                  blockchain interactions with gasless transactions!
                 </Accordion.Panel>
               </Accordion.Item>
             </Accordion>
