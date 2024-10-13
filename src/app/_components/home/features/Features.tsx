@@ -2,26 +2,29 @@ import React from "react";
 import { RiSecurePaymentLine } from "react-icons/ri";
 import { GiTwoCoins } from "react-icons/gi";
 import { SiAdguard } from "react-icons/si";
-import {motion} from "framer-motion";
+import { motion } from "framer-motion";
 import { FeatureCard } from "./FeatureCard";
 import { textVariant } from "../Animations";
-
 
 export default function Features() {
   return (
     <section className="custom-screen  md:py-8">
       <div className="mx-auto max-w-xl text-center leading-none">
-        <motion.h3 className="text-2xl md:text-4xl font-bold"
-        initial="initial"
-        whileInView="final"
-        viewport={{ once: true }}
-        variants={textVariant}
-        >Seamless crypto and fiat swaps</motion.h3>
-        <motion.p className=""
-        initial="initial"
-        whileInView="final2"
-        viewport={{ once: true }}
-        variants={textVariant}
+        <motion.h3
+          className="text-2xl font-bold md:text-4xl"
+          initial="initial"
+          whileInView="final"
+          viewport={{ once: true }}
+          variants={textVariant}
+        >
+          Seamless crypto and fiat swaps
+        </motion.h3>
+        <motion.p
+          className=""
+          initial="initial"
+          whileInView="final2"
+          viewport={{ once: true }}
+          variants={textVariant}
         >
           Zerokoin offers the best cryto-fiat on-ramp and off-ramp gateway
         </motion.p>
@@ -49,8 +52,8 @@ export default function Features() {
           }
         />
         <FeatureCard
-          title="Trustworthy"
-          description=" With a flawless 100% trade completion rate, you can trade with confidence, knowing that every transaction is executed securely and seamlessly."
+          title="Web 2 UX"
+          description="Zerokoin is designed with a layman african in mind , web abstract away all the blockchain complexity with smart wallets and gasless transactions."
           icon={
             <SiAdguard
               size={24}
