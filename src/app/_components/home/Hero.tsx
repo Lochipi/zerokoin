@@ -34,7 +34,7 @@ export const Hero = () => {
         withCloseButton={false}
       />
       <motion.h1
-        className="my-4 mt-8 text-3xl font-extrabold leading-none tracking-tight md:text-4xl md:text-5xl lg:text-6xl"
+        className="my-4 mt-8 text-3xl font-extrabold leading-none tracking-tight  md:text-5xl lg:text-6xl"
         initial="initial"
         whileInView="final"
         viewport={{ once: true }}
