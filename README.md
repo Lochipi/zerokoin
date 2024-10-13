@@ -28,7 +28,6 @@ Our mission is to simplify cryptocurrency transactions, removing obstacles and f
 
 Our journey doesn’t end here. We plan to continuously enhance Zerokoin by adding new features and expanding our reach. We aim to integrate more African currencies to lower entry barriers and provide real liquidity to support our growth.
 
-
 ## Tech Stack
 
 - **Frontend**: Next.js
@@ -38,9 +37,6 @@ Our journey doesn’t end here. We plan to continuously enhance Zerokoin by addi
 - **Database**: PostgreSQL
 - **Wallet Integration**: ThirdWeb
 - **Blockchain**: Lisk, Optimism, Base.
-  
-
-![Supported Chains](https://github.com/user-attachments/assets/4e2f7ba0-139e-4df9-ad9a-7408c5f4c2ec)
 
 ## Submission
 
@@ -48,31 +44,6 @@ Our journey doesn’t end here. We plan to continuously enhance Zerokoin by addi
 - [Demo Video](https://youtu.be/rcVpWs5rFGs?feature=shared)
 - [WhitePaper](https://docs.google.com/document/d/1KQWaoBdhBnznPJqkOYFgIs_nNSJlliWzOf0CpHdLZNg/edit?usp=sharing)
 
-## Getting Started
-
-To get started with Zerokoin, follow these steps:
-
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/yourusername/zerokoin.git
-   cd zerokoin
-   ```
-2. **Install dependencies**:
-   ```bash
-    npm install
-   ```
-3. **Set up environment variables:**:
-   Create a `.env` file in the root directory.
-   Add the necessary environment variables as described in the .env.example file.
-4. **Run the development server**:
-   ```bash
-    npm run dev
-   ```
-5. **Build the project**:
-   ```bash
-    npm run build
-   ```
-
 ## Contributing
 
-We are awaiting your `PR`. Please read the CONTRIBUTING.md file for guidelines on how to contribute to this project.
+We are awaiting your `PR`. Please read the [CONTRIBUTING.md](https://github.com/Lochipi/zerokoin/blob/main/CONTRIBUTING.md) file for guidelines on how to contribute to this project.
