@@ -2,7 +2,8 @@ import React from "react";
 import { Image } from "@mantine/core";
 import { HOME_PAGE } from "@/utils/constants";
 import Link from "next/link";
-import { RiDiscordFill, RiTwitterXFill, RiYoutubeFill } from "react-icons/ri";
+import { RiTwitterXFill, RiYoutubeFill } from "react-icons/ri";
+import { FaDiscord } from "react-icons/fa";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -97,8 +98,9 @@ export default function Footer() {
             <div className="flex gap-x-2 space-y-1">
               <Link
                 rel="noopener noreferrer"
-                href="/"
-                title="X"
+                href="https://x.com/zerokoin"
+                target="_blank"
+                title="Twitter"
                 className="flex items-center p-1"
               >
                 <RiTwitterXFill size={24} />
@@ -113,11 +115,12 @@ export default function Footer() {
               </Link>
               <Link
                 rel="noopener noreferrer"
-                href="/"
+                target="_blank"
+                href="https://github.com/Lochipi/Zerokoin/"
                 title="Discord"
                 className="flex items-center p-1"
               >
-                <RiDiscordFill size={24} />
+                <FaDiscord size={24} />
               </Link>
             </div>
           </div>
