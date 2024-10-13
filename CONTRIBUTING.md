@@ -1,6 +1,6 @@
 # Contributing to Zerokoin
 
-Thank you for considering contributing to Zerokoin! We value your input and strive to make this project a success together. Please follow these guidelines to help maintain the quality and consistency of the project.
+Thank you for considering contributing to Zerokoin! Please follow these guidelines to help maintain the quality and consistency of the project.
 
 ## Code Standards
 
@@ -24,7 +24,33 @@ Thank you for considering contributing to Zerokoin! We value your input and stri
   - `chore/short-description`
 - **Keep Branches Up-to-Date**: Regularly sync your branch with the `main` branch to avoid conflicts and ensure smooth integration.
 
-## Building the Project
+## Getting Started
+
+To get started with Zerokoin, follow these steps:
+
+1. **Clone the repository**:
+
+Before you clone, make sure you have forked the repo into your account and just follow the preceeding steps.
+
+```bash
+   git clone https://github.com/yourusername/zerokoin.git
+   cd zerokoin
+```
+
+2. **Install dependencies**:
+
+```bash
+    npm install
+```
+
+3. **Set up environment variables:**
+   Create a `.env` file in the root directory.
+   Add the necessary environment variables as described in the .env.example file.
+4. **Run the development server**:
+   ```bash
+    npm run dev
+   ```
+5. **Build the project**:
 
 - **Run `npm run build` Before Pushing**: Before you push your branch, make sure to run the build command to ensure there are no build errors:
   ```bash

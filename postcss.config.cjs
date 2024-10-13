@@ -1,3 +1,4 @@
+// PostCSS configuration with Tailwind CSS, Mantine presets, and custom breakpoints using PostCSS Simple Vars
 module.exports = {
   plugins: {
     tailwindcss: {},
