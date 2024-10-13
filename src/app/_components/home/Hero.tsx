@@ -62,7 +62,7 @@ export const Hero = () => {
         variants={textVariant}
       >
         An automated crypto-fiat on-ramp and off-ramp solution, integrating with
-        Naira and M-Pesa for instant swaps
+        M-pesa and Paystack for instant swaps
       </motion.p>
       <motion.div
         className="mb-8 flex w-full flex-col space-y-4 sm:flex-row sm:justify-center sm:space-x-4 sm:space-y-0 lg:mb-16"
