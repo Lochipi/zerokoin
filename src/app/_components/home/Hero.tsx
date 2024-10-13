@@ -25,16 +25,16 @@ export const Hero = () => {
           <div className=" flex h-full w-full items-center justify-between gap-x-2">
             <Pill>Alpha</Pill>
             <p className="text-[12px] lg:text-[14px]">
-              Zerokoin is in early development ! Launching soon
+              Zerokoin is in early development !
             </p>
           </div>
         }
-        className=" flex h-10 w-[105%] md:w-fit items-center px-2 text-xs"
+        className=" flex h-10 w-[105%] items-center px-2 text-xs md:w-fit"
         radius="xl"
         withCloseButton={false}
       />
       <motion.h1
-        className="my-4 mt-8 text-3xl md:text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-6xl"
+        className="my-4 mt-8 text-3xl font-extrabold leading-none tracking-tight  md:text-5xl lg:text-6xl"
         initial="initial"
         whileInView="final"
         viewport={{ once: true }}
@@ -62,7 +62,7 @@ export const Hero = () => {
         variants={textVariant}
       >
         An automated crypto-fiat on-ramp and off-ramp solution, integrating with
-        Naira and M-Pesa for instant swaps
+        M-pesa and Paystack for instant swaps
       </motion.p>
       <motion.div
         className="mb-8 flex w-full flex-col space-y-4 sm:flex-row sm:justify-center sm:space-x-4 sm:space-y-0 lg:mb-16"
@@ -89,11 +89,11 @@ export const Hero = () => {
           Learn more
         </Button>
       </motion.div>
-      <div className="flex flex-col mt-8 w-full justify-center items-center">
-        <span className="font-semibold text-xl md:text-2xl">POWERED BY</span>
-        <div className="mt-0 md:mt-8 flex itens-center flex-col sm:flex-row">
+      <div className="mt-8 flex w-full flex-col items-center justify-center">
+        <span className="text-xl font-semibold md:text-2xl">POWERED BY</span>
+        <div className="itens-center mt-0 flex flex-col sm:flex-row md:mt-8">
           <motion.div
-            className="mb-5 h-32  w-84 md:w-64"
+            className="w-84 mb-5  h-32 md:w-64"
             initial="initial"
             whileInView="final"
             // viewport={{ once: true }}
@@ -106,7 +106,7 @@ export const Hero = () => {
             />
           </motion.div>
           <motion.div
-            className="mb-5 h-22 md:h-32 w-45 md:w-44 lg:mb-0"
+            className="h-22 w-45 mb-5 md:h-32 md:w-44 lg:mb-0"
             initial="initial"
             whileInView="final2"
             // viewport={{ once: true }}
@@ -128,7 +128,7 @@ export const Hero = () => {
             <img
               src="/images/Paystack.png"
               alt=""
-              className=" h-20 w-50 object-cover"
+              className=" w-50 h-20 object-cover"
             />
           </motion.div>
           {/* <motion.div
