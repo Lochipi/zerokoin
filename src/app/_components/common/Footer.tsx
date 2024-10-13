@@ -2,7 +2,7 @@ import React from "react";
 import { Image } from "@mantine/core";
 import { HOME_PAGE } from "@/utils/constants";
 import Link from "next/link";
-import { RiDiscordFill, RiTwitterXFill, RiYoutubeFill } from "react-icons/ri";
+import { RiTwitterXFill, RiYoutubeFill } from "react-icons/ri";
 import { FaDiscord } from "react-icons/fa";
 
 export default function Footer() {
