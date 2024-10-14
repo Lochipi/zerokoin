@@ -126,7 +126,7 @@ export const Hero = () => {
             variants={leftVariant}
           >
             <img
-              src="/images/Paystack.png"
+              src="/images/Paystack.svg"
               alt=""
               className=" w-50 h-20 object-cover"
             />
