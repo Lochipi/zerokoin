@@ -15,12 +15,12 @@ interface InitializeTransactionResponse {
 
 interface InitializeTransactionParams {
   email: string;
-  amount: string; // Paystack requires amount as string
+  amount: string;
 }
 
 interface InitializePaystackTransactionParams {
   userPaymentEmail: string;
-  amount: number; // Take in the amount as a number
+  amount: number;
 }
 
 async function initializePaystackTransaction({
