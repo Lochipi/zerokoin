@@ -41,7 +41,6 @@ export default function WalletBuyNaira({ orderId }: WalletOderProps) {
   const [basename, setBasename] = useState<string | undefined>(undefined);
   const connectionStatus = useActiveWalletConnectionStatus();
   const account = useActiveAccount();
-  const router = useRouter();
   const getOrderDetails = api.orders.getOrderDetails.useQuery({
     orderId: orderId,
   });
