@@ -15,12 +15,12 @@ interface InitializeTransactionResponse {
 
 interface InitializeTransactionParams {
   email: string;
-  amount: number; // Amount in subunit (e.g., kobo for NGN)
+  amount: string; // Paystack requires amount as string
 }
 
 interface InitializePaystackTransactionParams {
   userPaymentEmail: string;
-  amount: number;
+  amount: number; // Take in the amount as a number
 }
 
 async function initializePaystackTransaction({
@@ -32,7 +32,7 @@ async function initializePaystackTransaction({
 
   const params: InitializeTransactionParams = {
     email: userPaymentEmail,
-    amount: amount * 100,
+    amount: (amount * 100).toString(),
   };
 
   try {
@@ -45,10 +45,10 @@ async function initializePaystackTransaction({
       });
 
     if (response.data.status) {
-      console.log("Success ", "Fetched access code:", response.data.data);
+      console.log("Success: Fetched access code:", response.data.data);
       return response.data.data.reference;
     } else {
-      console.log("Error", response.data.message);
+      console.error("Error: ", response.data.message);
       throw new Error(
         response.data.message || "Failed to initialize transaction",
       );
