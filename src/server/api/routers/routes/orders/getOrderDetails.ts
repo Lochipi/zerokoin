@@ -19,6 +19,7 @@ export const getOrderDetails = publicProcedure
             phoneNumber: true,
           },
         },
+        payStackPaymentRefrence: true,
       },
     });
 

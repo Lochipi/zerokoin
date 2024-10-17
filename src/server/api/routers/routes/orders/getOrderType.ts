@@ -17,5 +17,6 @@ export const getOderType = publicProcedure
     return {
       walletType: orderType?.walletAdressChoice,
       orderType: orderType?.orderType,
+      currencyType: orderType?.fiatCurrency,
     };
   });

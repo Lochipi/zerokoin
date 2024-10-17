@@ -26,6 +26,7 @@ export const env = createEnv({
     MPESA_CTOB_CALLBACK_URL: z.string(),
     MPESA_BTOC_CALLBACK_URL: z.string(),
     MPESA_BTOC_TIMEOUT_URL: z.string(),
+    PAYSTACK_SECRET_KEY: z.string(),
   },
 
   /**
@@ -37,6 +38,7 @@ export const env = createEnv({
     // NEXT_PUBLIC_CLIENTVAR: z.string(),
     NEXT_PUBLIC_THIRDWEB_CLIENT_ID: z.string(),
     NEXT_PUBLIC_WALLETKIT_PROJECET_ID: z.string(),
+    NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY: z.string(),
   },
 
   /**
@@ -57,11 +59,14 @@ export const env = createEnv({
     MPESA_CTOB_CALLBACK_URL: process.env.MPESA_CTOB_CALLBACK_URL,
     MPESA_BTOC_CALLBACK_URL: process.env.MPESA_BTOC_CALLBACK_URL,
     MPESA_BTOC_TIMEOUT_URL: process.env.MPESA_BTOC_TIMEOUT_URL,
+    PAYSTACK_SECRET_KEY: process.env.PAYSTACK_SECRET_KEY,
 
     // client
     NEXT_PUBLIC_THIRDWEB_CLIENT_ID: process.env.NEXT_PUBLIC_THIRDWEB_CLIENT_ID,
     NEXT_PUBLIC_WALLETKIT_PROJECET_ID:
       process.env.NEXT_PUBLIC_WALLETKIT_PROJECET_ID,
+    NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY:
+      process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially

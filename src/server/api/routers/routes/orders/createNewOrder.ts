@@ -1,4 +1,5 @@
 import { publicProcedure } from "@/server/api/trpc";
+import { $Enums } from "@prisma/client";
 import { z } from "zod";
 
 export const createNewOrder = publicProcedure
@@ -6,7 +7,7 @@ export const createNewOrder = publicProcedure
     z.object({
       orderType: z.enum(["BUY", "SELL"]),
       swapToken: z.string(),
-      fiatCurrency: z.string(),
+      fiatCurrency: z.nativeEnum($Enums.SupportedCurrencies),
       qoutedTokenAmount: z.number(),
       qoutedFiatAmount: z.number(),
       qoutedExchangeRate: z.number(),
