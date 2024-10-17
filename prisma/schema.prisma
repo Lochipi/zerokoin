@@ -9,29 +9,30 @@ datasource db {
 }
 
 model Order {
-  id                       String       @id @default(uuid())
+  id                       String                   @id @default(uuid())
   userId                   String?
   orderType                OrderType
-  fiatCurrency             String
+  fiatCurrency             SupportedCurrencies
   swapToken                String
   qoutedTokenAmount        Float
   quotedFiatAmount         Float
   qoutedExchangeRate       Float
   walletAdressChoice       WalletChoice
-  status                   OrderStatus  @default(PENDING)
-  createdAt                DateTime     @default(now())
+  status                   OrderStatus              @default(PENDING)
+  createdAt                DateTime                 @default(now())
   settlementBlockchain     Int
   walletAddress            String?
   binanceId                String?
   transactionFee           Float?
   txnHash                  String?
   additionalNotes          String?
-  updatedAt                DateTime?    @updatedAt
+  updatedAt                DateTime?                @updatedAt
   stkMessage               StkMessage?
-  OriginatorConversationID String?      @unique
-  ConversationID           String?      @unique
+  OriginatorConversationID String?                  @unique
+  ConversationID           String?                  @unique
   TransactionID            String?
   receiverPartyPublicName  String?
+  payStackPaymentRefrence  PaystackPaymentRefrence?
 }
 
 model ExchangeRate {
@@ -45,14 +46,24 @@ model ExchangeRate {
 
 model StkMessage {
   id                  Int       @id @default(autoincrement())
-  orderId             String    @unique
   MerchantRequestID   String
   CheckoutRequestID   String
   stkStatus           StkStatus @default(PENDING)
   ResponseDescription String?
   CustomerMessage     String?
   phoneNumber         String
-  order               Order     @relation(fields: [orderId], references: [id])
+
+  order   Order  @relation(fields: [orderId], references: [id])
+  orderId String @unique
+}
+
+model PaystackPaymentRefrence {
+  id       Int                           @id @default(autoincrement())
+  refrence String
+  status   PaystackPaymentRefrenceStatus
+
+  oder    Order  @relation(fields: [orderId], references: [id])
+  orderId String @unique
 }
 
 enum OrderType {
@@ -79,6 +90,12 @@ enum StkStatus {
   PENDING
   SUCCESS
   CANCELLED
+}
+
+enum PaystackPaymentRefrenceStatus {
+  PENDING
+  SUCCESS
+  FAILED
 }
 
 enum SupportedCurrencies {

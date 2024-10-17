@@ -4,6 +4,7 @@ import { exchangeRatesRouter } from "./routers/routes/rates";
 import { walletBuyOrderRouter } from "./routers/routes/wallet-buy";
 import { walletSellOrderRouter } from "./routers/routes/wallet-sell";
 import { BinanceBuyOrderRouter } from "./routers/routes/binance";
+import { walletBuyNairaRouter } from "./routers/routes/wallet-buy-naira";
 
 /**
  * This is the primary router for your server.
@@ -16,6 +17,7 @@ export const appRouter = createTRPCRouter({
   walletBuy: walletBuyOrderRouter,
   walletSell: walletSellOrderRouter,
   binanceBuy: BinanceBuyOrderRouter,
+  walletBuyNaira: walletBuyNairaRouter,
 });
 
 // export type definition of API
