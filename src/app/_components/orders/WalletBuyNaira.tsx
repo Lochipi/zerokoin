@@ -15,7 +15,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { IoSwapVertical } from "react-icons/io5";
 import { ConnectWalletButton } from "../common/ConnectWalletButton";
-import { notifications } from "@mantine/notifications";
+import { notifications, showNotification } from "@mantine/notifications";
 import {
   useActiveAccount,
   useActiveWalletConnectionStatus,
@@ -43,12 +43,42 @@ export default function WalletBuyNaira({ orderId }: WalletOderProps) {
   const getOrderDetails = api.orders.getOrderDetails.useQuery({
     orderId: orderId,
   });
+  const intializePaystackPayment =
+    api.walletBuyNaira.initializeWalletBuyNaira.useMutation({
+      onSettled: (data, _, variables) => {
+        if (data) {
+          showNotification({
+            title: "Success",
+            message: "Payment link generated successfully",
+            color: "green",
+          });
+        } else {
+          showNotification({
+            title: "Error",
+            message: "We encountered an erro when generating payment link",
+            color: "red",
+          });
+        }
+      },
+    });
 
   const { resolveBaseNameToWalletAddress, loading, resolvedAddress } =
     useResolveBaseNameToWalletAddress();
 
   function handleMakePayment() {
     console.log("");
+    if (account?.address && paymentEmail) {
+      intializePaystackPayment.mutate({
+        paymentEmail: paymentEmail,
+        walletAddress:
+          walletType === "WALLET" && account?.address
+            ? account?.address
+            : walletType === "BASENAME" && resolvedAddress
+              ? resolvedAddress
+              : "",
+        orderId: orderId,
+      });
+    }
   }
   const handleResolve = async () => {
     await resolveBaseNameToWalletAddress({

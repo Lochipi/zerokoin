@@ -7,6 +7,7 @@ export const initializeWalletBuyNaira = publicProcedure
     z.object({
       orderId: z.string().uuid(),
       paymentEmail: z.string().email(),
+      walletAddress: z.string(),
     }),
   )
   .mutation(async ({ input, ctx }) => {
@@ -29,6 +30,7 @@ export const initializeWalletBuyNaira = publicProcedure
             id: orderInfo.id,
           },
           data: {
+            walletAddress: input.walletAddress,
             payStackPaymentRefrence: {
               create: {
                 refrence: paymentRefrence,
