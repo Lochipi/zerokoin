@@ -1,6 +1,7 @@
 "use client";
 import BinanceBuyOrder from "@/app/_components/orders/BinanceBuyOrder";
 import BinanceSellOrder from "@/app/_components/orders/BinanceSellOrder";
+import WalletBuyNaira from "@/app/_components/orders/WalletBuyNaira";
 import WalletBuyOrder from "@/app/_components/orders/WalletBuyOrder";
 import WalletSellOrder from "@/app/_components/orders/WalletSellOrder";
 import { api } from "@/trpc/react";
@@ -25,8 +26,14 @@ export default function SingleOrderPage({
           <BinanceSellOrder orderId={params.orderId} />
         )}
       {getOrderType.data?.walletType === "SELFCUSTODIALWALLET" &&
-        getOrderType.data.orderType === "BUY" && (
+        getOrderType.data.orderType === "BUY" &&
+        getOrderType.data.currencyType === "KES" && (
           <WalletBuyOrder orderId={params.orderId} />
+        )}
+      {getOrderType.data?.walletType === "SELFCUSTODIALWALLET" &&
+        getOrderType.data.orderType === "BUY" &&
+        getOrderType.data.currencyType === "NGN" && (
+          <WalletBuyNaira orderId={params.orderId} />
         )}
       {getOrderType.data?.walletType === "SELFCUSTODIALWALLET" &&
         getOrderType.data.orderType === "SELL" && (
