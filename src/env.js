@@ -38,6 +38,7 @@ export const env = createEnv({
     // NEXT_PUBLIC_CLIENTVAR: z.string(),
     NEXT_PUBLIC_THIRDWEB_CLIENT_ID: z.string(),
     NEXT_PUBLIC_WALLETKIT_PROJECET_ID: z.string(),
+    NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY: z.string(),
   },
 
   /**
@@ -64,6 +65,8 @@ export const env = createEnv({
     NEXT_PUBLIC_THIRDWEB_CLIENT_ID: process.env.NEXT_PUBLIC_THIRDWEB_CLIENT_ID,
     NEXT_PUBLIC_WALLETKIT_PROJECET_ID:
       process.env.NEXT_PUBLIC_WALLETKIT_PROJECET_ID,
+    NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY:
+      process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially

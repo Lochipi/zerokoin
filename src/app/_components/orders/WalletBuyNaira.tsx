@@ -12,20 +12,22 @@ import {
   SegmentedControl,
   TextInput,
 } from "@mantine/core";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { IoSwapVertical } from "react-icons/io5";
 import { ConnectWalletButton } from "../common/ConnectWalletButton";
-import { notifications, showNotification } from "@mantine/notifications";
+import { showNotification } from "@mantine/notifications";
 import {
   useActiveAccount,
   useActiveWalletConnectionStatus,
 } from "thirdweb/react";
 import { useRouter } from "next/navigation";
+import Paystack from "@paystack/inline-js";
 
 import { TbWorldSearch } from "react-icons/tb";
 import useResolveBaseNameToWalletAddress from "@/utils/hooks/useResolveBaseNameToWalletAddress";
 import { FcInfo } from "react-icons/fc";
 import { getBlockchainName } from "@/utils/getBlockchainName";
+import { env } from "@/env";
 
 interface WalletOderProps {
   orderId: string;
@@ -43,40 +45,56 @@ export default function WalletBuyNaira({ orderId }: WalletOderProps) {
   const getOrderDetails = api.orders.getOrderDetails.useQuery({
     orderId: orderId,
   });
-  const intializePaystackPayment =
-    api.walletBuyNaira.initializeWalletBuyNaira.useMutation({
-      onSettled: (data, _, variables) => {
-        if (data) {
-          showNotification({
-            title: "Success",
-            message: "Payment link generated successfully",
-            color: "green",
-          });
-        } else {
-          showNotification({
-            title: "Error",
-            message: "We encountered an erro when generating payment link",
-            color: "red",
-          });
-        }
-      },
-    });
+  const verifyPayment = api.walletBuyNaira.verifyPaystackOder.useMutation({
+    onSettled: (data) => {
+      if (data?.isSuccess) {
+        showNotification({
+          title: "Success",
+          message: "Payment verified successfully",
+          color: "green",
+        });
+      } else {
+        showNotification({
+          title: "Error",
+          message: "We encountered an error when procesing the payment",
+          color: "red",
+        });
+      }
+    },
+  });
 
   const { resolveBaseNameToWalletAddress, loading, resolvedAddress } =
     useResolveBaseNameToWalletAddress();
 
   function handleMakePayment() {
     console.log("");
-    if (account?.address && paymentEmail) {
-      intializePaystackPayment.mutate({
-        paymentEmail: paymentEmail,
-        walletAddress:
-          walletType === "WALLET" && account?.address
-            ? account?.address
-            : walletType === "BASENAME" && resolvedAddress
-              ? resolvedAddress
-              : "",
-        orderId: orderId,
+    if (
+      account?.address &&
+      paymentEmail &&
+      getOrderDetails.data?.quotedFiatAmount
+    ) {
+      const popup = new Paystack();
+
+      popup.newTransaction({
+        key: env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY,
+        email: paymentEmail,
+        amount: getOrderDetails.data.quotedFiatAmount * 100,
+        onSuccess: (transaction) => {
+          console.log(transaction);
+          verifyPayment.mutate({
+            reference: transaction.reference,
+            orderId: orderId,
+          });
+        },
+        onLoad: (response) => {
+          console.log("onLoad: ", response);
+        },
+        onCancel: () => {
+          console.log("onCancel");
+        },
+        onError: (error) => {
+          console.log("Error: ", error.message);
+        },
       });
     }
   }
@@ -242,7 +260,7 @@ export default function WalletBuyNaira({ orderId }: WalletOderProps) {
           </div>
         ) : (
           <Button
-            disabled={false}
+            disabled={paymentEmail && paymentEmail?.length > 8 ? false : true}
             loading={false}
             onClick={() => handleMakePayment()}
             size="lg"

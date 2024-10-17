@@ -46,7 +46,7 @@ async function initializePaystackTransaction({
 
     if (response.data.status) {
       console.log("Success: Fetched access code:", response.data.data);
-      return response.data.data.reference;
+      return response.data.data.access_code;
     } else {
       console.error("Error: ", response.data.message);
       throw new Error(

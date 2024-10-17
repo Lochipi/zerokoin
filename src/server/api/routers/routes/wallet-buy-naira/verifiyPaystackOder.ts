@@ -9,38 +9,33 @@ export const verifyPaystackOder = publicProcedure
       orderId: z.string().uuid(),
     }),
   )
-  .query(async ({ input, ctx }) => {
+  .mutation(async ({ input, ctx }) => {
     const orderInfo = await ctx.db.order.findUnique({
       where: {
         id: input.orderId,
-        payStackPaymentRefrence: {
-          refrence: input.reference,
-        },
-      },
-      include: {
-        payStackPaymentRefrence: true,
+        fiatCurrency: "NGN",
       },
     });
-
     if (orderInfo) {
-      const paymentStatus = await verifyPaystackTransaction({
-        transactionReference: orderInfo.payStackPaymentRefrence?.refrence ?? "",
+      const result = await verifyPaystackTransaction({
+        transactionReference: input.reference,
       });
-      if (paymentStatus.isSuccess) {
+      if (result.isSuccess) {
         await ctx.db.order.update({
           where: {
-            id: input.orderId,
+            id: orderInfo.id,
           },
           data: {
             status: "PAYMENTCOMPLETED",
             payStackPaymentRefrence: {
-              update: {
+              create: {
+                refrence: input.reference,
                 status: "SUCCESS",
               },
             },
           },
         });
-        return paymentStatus;
+        return result;
       }
     }
   });
