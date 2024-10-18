@@ -53,7 +53,9 @@ export default function OrderDetails({
           >
             <p className=" text-xs  leading-[0]">
               {orderDetails.data?.orderType === "BUY"
-                ? orderDetails.data.stkMessage
+                ? orderDetails.data.stkMessage ??
+                  orderDetails.data.payStackPaymentRefrence?.status ===
+                    "SUCCESS"
                   ? "PAID"
                   : "TO PAY"
                 : orderDetails.data?.stkMessage
@@ -78,8 +80,12 @@ export default function OrderDetails({
             </div>
             <p className=" text-xs leading-[0]">
               {orderDetails.data?.orderType === "BUY"
-                ? "From M-pesa"
-                : "To M-pesa"}
+                ? orderDetails.data?.stkMessage
+                  ? "From Mpesa"
+                  : "From Paystack"
+                : orderDetails.data?.stkMessage
+                  ? "To Mpesa"
+                  : "To Paystack"}
               {orderDetails.data?.stkMessage &&
                 ` +${orderDetails.data?.stkMessage?.phoneNumber}`}
             </p>
