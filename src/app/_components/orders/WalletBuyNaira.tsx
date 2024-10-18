@@ -15,7 +15,7 @@ import {
 import React, { useState } from "react";
 import { IoSwapVertical } from "react-icons/io5";
 import { ConnectWalletButton } from "../common/ConnectWalletButton";
-import { showNotification } from "@mantine/notifications";
+import { notifications, showNotification } from "@mantine/notifications";
 import {
   useActiveAccount,
   useActiveWalletConnectionStatus,
@@ -37,6 +37,7 @@ export default function WalletBuyNaira({ orderId }: WalletOderProps) {
   const [paymentEmail, setPaymentEmail] = useState<string | undefined>(
     undefined,
   );
+  const router = useRouter();
   const [walletType, setWalletType] = useState<"WALLET" | "BASENAME">("WALLET");
   const [basename, setBasename] = useState<string | undefined>(undefined);
   const connectionStatus = useActiveWalletConnectionStatus();
@@ -48,10 +49,13 @@ export default function WalletBuyNaira({ orderId }: WalletOderProps) {
     onSettled: (data) => {
       if (data?.isSuccess) {
         showNotification({
+          id: "payment-loading",
           title: "Success",
-          message: "Payment verified successfully",
+          message: "Payment verified , intiating crypto transfer",
           color: "green",
+          autoClose: 80000,
         });
+        intiatePaystackOrderSettlement.mutate({ orderId: orderId });
       } else {
         showNotification({
           title: "Error",
@@ -61,39 +65,80 @@ export default function WalletBuyNaira({ orderId }: WalletOderProps) {
       }
     },
   });
-
+  const updateOrderBeforePaymentIntialization =
+    api.walletBuyNaira.updateOrderBeforePaymentIntialization.useMutation({
+      onSettled: (data) => {
+        if (data && paymentEmail && getOrderDetails.data?.quotedFiatAmount) {
+          const popup = new Paystack();
+          popup.newTransaction({
+            key: env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY,
+            email: paymentEmail,
+            amount: getOrderDetails.data.quotedFiatAmount * 100,
+            onSuccess: (transaction) => {
+              console.log(transaction);
+              verifyPayment.mutate({
+                reference: transaction.reference,
+                orderId: orderId,
+              });
+            },
+            onLoad: (response) => {
+              console.log("onLoad: ", response);
+            },
+            onCancel: () => {
+              console.log("onCancel");
+            },
+            onError: (error) => {
+              console.log("Error: ", error.message);
+            },
+          });
+        } else {
+          showNotification({
+            title: "Error",
+            message: "We encountered an error while intiating the payment",
+            color: "red",
+          });
+        }
+      },
+    });
+  const intiatePaystackOrderSettlement =
+    api.walletBuyNaira.intiatePaystackOrderSettlement.useMutation({
+      onSettled: (data) => {
+        if (data) {
+          notifications.hide("payment-loading");
+          showNotification({
+            title: "Success",
+            message: "Crypto tokens sent to your wallet  address",
+            color: "green",
+            autoClose: 80000,
+          });
+          router.push(`/orders/status/${orderId}`);
+        } else {
+          showNotification({
+            title: "Error",
+            message: "We encountered an error sending tokens  to your address",
+            color: "red",
+            autoClose: 80000,
+          });
+        }
+      },
+    });
   const { resolveBaseNameToWalletAddress, loading, resolvedAddress } =
     useResolveBaseNameToWalletAddress();
 
   function handleMakePayment() {
-    console.log("");
     if (
-      account?.address &&
+      (account?.address ?? resolvedAddress) &&
       paymentEmail &&
       getOrderDetails.data?.quotedFiatAmount
     ) {
-      const popup = new Paystack();
-
-      popup.newTransaction({
-        key: env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY,
-        email: paymentEmail,
-        amount: getOrderDetails.data.quotedFiatAmount * 100,
-        onSuccess: (transaction) => {
-          console.log(transaction);
-          verifyPayment.mutate({
-            reference: transaction.reference,
-            orderId: orderId,
-          });
-        },
-        onLoad: (response) => {
-          console.log("onLoad: ", response);
-        },
-        onCancel: () => {
-          console.log("onCancel");
-        },
-        onError: (error) => {
-          console.log("Error: ", error.message);
-        },
+      updateOrderBeforePaymentIntialization.mutate({
+        walletAddress:
+          walletType === "WALLET" && account?.address
+            ? account?.address
+            : walletType === "BASENAME" && resolvedAddress
+              ? resolvedAddress
+              : "",
+        orderId: orderId,
       });
     }
   }
@@ -260,7 +305,11 @@ export default function WalletBuyNaira({ orderId }: WalletOderProps) {
         ) : (
           <Button
             disabled={paymentEmail && paymentEmail?.length > 8 ? false : true}
-            loading={false}
+            loading={
+              updateOrderBeforePaymentIntialization.isLoading ||
+              verifyPayment.isLoading ||
+              intiatePaystackOrderSettlement.isLoading
+            }
             onClick={() => handleMakePayment()}
             size="lg"
             className=" rounded-full"
