@@ -30,9 +30,9 @@ export default function HowItWorks() {
           <h4>Place an Order</h4>
           <p>
             {storeSnapshot.orderType === "Buy" &&
-              "Place an order by selecting the token you want to buy  , amount to buy and  your preffered destination wallet (Binance or Self-custodial wallet)"}
+              "Place an order by selecting the token you want to buy  , amount to buy and  your preffered destination wallet (Smart wallets or Self-custodial wallet)"}
             {storeSnapshot.orderType === "Sell" &&
-              "Place an order by selecting the token to  to sell , amount to sell and the wallet holding the funds to sell (Binance or Self-custodial wallet)"}
+              "Place an order by selecting the token to  to sell , amount to sell and the wallet holding the funds to sell (Smart wallets or Self-custodial wallet)"}
           </p>
         </Paper>
         <Paper withBorder className=" flex w-full flex-col p-4">
@@ -42,7 +42,7 @@ export default function HowItWorks() {
             {storeSnapshot.orderType === "Buy" &&
               "Zerokoin  will send you an M-Pesa  prompt requesting you to  pay the order amount , confirm the payment"}
             {storeSnapshot.orderType === "Sell" &&
-              "Send the tokens from your wallet to Zerokoin wallets (Binance or Self-custodial wallet)"}
+              "Send the tokens from your wallet to Zerokoin wallets (Smart wallets or Self-custodial wallet)"}
           </p>
         </Paper>
         <Paper withBorder className=" flex w-full flex-col p-4">
@@ -52,7 +52,7 @@ export default function HowItWorks() {
           </h4>
           <p>
             {storeSnapshot.orderType === "Buy" &&
-              "Zerokoin automatically  sends  crypto tokens your Binance  wallet or Self-custodial wallet with  crypto tokens"}
+              "Zerokoin automatically  sends  crypto tokens your Smart wallets wallet or Self-custodial wallet with  crypto tokens"}
             {storeSnapshot.orderType === "Sell" &&
               "Zerokoin automatically  sends  fiat to your M-Pesa number with the equivalent  of  crypto sold"}
           </p>
