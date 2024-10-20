@@ -1,5 +1,13 @@
 # Zerokoin✨
 
+- [ Watch Demo Video on Youtube](https://youtu.be/HrjVrg4p1bE?si=S3TAC-PmsaGXtaBy)
+
+## Sample onchain Transactions
+
+- [USDT token transfer on Base sepolia](https://youtu.be/HrjVrg4p1bE?si=S3TAC-PmsaGXtaBy)
+
+## Introduction
+
 Many Africans are resourceful and eager to seize global opportunities, like those offered by the gig economy. However, high transaction fees, unfavorable exchange rates, and scams often prevent them from fully participating.
 
 Welcome to Zerokoin, a project aimed at simplifying blockchain technology for the average African. Our goal is to empower users to transact seamlessly and effortlessly.
@@ -41,7 +49,7 @@ Our journey doesn’t end here. We plan to continuously enhance Zerokoin by addi
 ## Submission
 
 - [Pitch Deck](https://drive.google.com/file/d/1_lEJ_yqICfst6UB3xc2rEoaJRLfANvUv/view?usp=sharing)
-- [Demo Video](https://youtu.be/rcVpWs5rFGs?feature=shared)
+- [Demo Video](https://youtu.be/HrjVrg4p1bE?si=S3TAC-PmsaGXtaBy)
 - [WhitePaper](https://docs.google.com/document/d/1KQWaoBdhBnznPJqkOYFgIs_nNSJlliWzOf0CpHdLZNg/edit?usp=sharing)
 
 ## Contributing
