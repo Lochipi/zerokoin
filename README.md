@@ -21,7 +21,7 @@ Our mission is to simplify cryptocurrency transactions, removing obstacles and f
 ### Key Features
 
 - **Local Currency Integration**: Use local money transfer methods to interact with cryptocurrencies.
-- **MPC Wallet**: Enhanced security with Multi-Party Computation wallets.
+- **Embedded & Smart Wallets**: Access secure wallets integrated with intelligent features for better user experience.
 - **Gasless Transactions**: No transaction fees for seamless crypto operations.
 
 ### Future Plans
@@ -35,8 +35,8 @@ Our journey doesn’t end here. We plan to continuously enhance Zerokoin by addi
 - **UI Components**: Mantine
 - **Backend**: tRPC for endpoints
 - **Database**: PostgreSQL
-- **Wallet Integration**: ThirdWeb
-- **Blockchain**: Lisk, Optimism, Base.
+- **Blockchain frameworks**: ThirdWeb SDK, Viem
+- **Blockchain**: Base, Optimism, Lisk
 
 ## Submission
 
