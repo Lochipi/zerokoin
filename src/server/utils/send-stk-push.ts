@@ -1,6 +1,7 @@
 import axios, { type AxiosError, type AxiosResponse } from "axios";
 import getAccessToken from "./getAccessToken";
 import { TRPCError } from "@trpc/server";
+import { env } from "@/env";
 
 interface StkPushRequest {
   BusinessShortCode: string;
@@ -50,7 +51,7 @@ async function sendStkPush({
       sandbox: sandbox,
     });
     const businessShortCode = sandbox
-      ? process.env.MPESA_SANDBOX_SHORT_CODE!
+      ? env.MPESA_SANDBOX_SHORT_CODE
       : process.env.MPESA_LIVE_SHORT_CODE!;
     const date = new Date();
     const passkey = sandbox

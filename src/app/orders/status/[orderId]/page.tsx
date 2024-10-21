@@ -53,7 +53,9 @@ export default function OrderDetails({
           >
             <p className=" text-xs  leading-[0]">
               {orderDetails.data?.orderType === "BUY"
-                ? orderDetails.data.stkMessage
+                ? orderDetails.data.stkMessage ??
+                  orderDetails.data.payStackPaymentRefrence?.status ===
+                    "SUCCESS"
                   ? "PAID"
                   : "TO PAY"
                 : orderDetails.data?.stkMessage
@@ -78,8 +80,12 @@ export default function OrderDetails({
             </div>
             <p className=" text-xs leading-[0]">
               {orderDetails.data?.orderType === "BUY"
-                ? "From M-pesa"
-                : "To M-pesa"}
+                ? orderDetails.data?.stkMessage
+                  ? "From Mpesa"
+                  : "From Paystack"
+                : orderDetails.data?.stkMessage
+                  ? "To Mpesa"
+                  : "To Paystack"}
               {orderDetails.data?.stkMessage &&
                 ` +${orderDetails.data?.stkMessage?.phoneNumber}`}
             </p>
@@ -148,7 +154,7 @@ export default function OrderDetails({
 
         {orderDetails.data?.txnHash && (
           <Link
-            href={`https://sepolia-blockscout.lisk.com/tx/${orderDetails.data.txnHash}`}
+            href={`https://base-sepolia.blockscout.com/tx/${orderDetails.data.txnHash}`}
             className=" my-4 w-full"
           >
             <Button className=" w-full rounded-full">View on blockchain</Button>

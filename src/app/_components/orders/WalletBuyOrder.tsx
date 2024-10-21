@@ -2,17 +2,18 @@
 import { api } from "@/trpc/react";
 import {
   Accordion,
+  ActionIcon,
   Button,
   Card,
   Image,
   NumberFormatter,
   Paper,
   Popover,
+  SegmentedControl,
   TextInput,
 } from "@mantine/core";
 import React, { useEffect, useState } from "react";
 import { IoSwapVertical } from "react-icons/io5";
-import { FcInfo } from "react-icons/fc";
 import { ConnectWalletButton } from "../common/ConnectWalletButton";
 import { notifications } from "@mantine/notifications";
 import {
@@ -20,21 +21,31 @@ import {
   useActiveWalletConnectionStatus,
 } from "thirdweb/react";
 import { useRouter } from "next/navigation";
+
+import { TbWorldSearch } from "react-icons/tb";
+import useResolveBaseNameToWalletAddress from "@/utils/hooks/useResolveBaseNameToWalletAddress";
+import { FcInfo } from "react-icons/fc";
 import { getBlockchainName } from "@/utils/getBlockchainName";
 
 interface WalletOderProps {
   orderId: string;
 }
+
 export default function WalletBuyOrder({ orderId }: WalletOderProps) {
   const [mpesaPaymentNumber, setMpesaPaymentNumber] = useState<
     string | undefined
   >(undefined);
+  const [walletType, setWalletType] = useState<"WALLET" | "BASENAME">("WALLET");
+  const [basename, setBasename] = useState<string | undefined>(undefined);
   const connectionStatus = useActiveWalletConnectionStatus();
   const account = useActiveAccount();
   const router = useRouter();
   const getOrderDetails = api.orders.getOrderDetails.useQuery({
     orderId: orderId,
   });
+
+  const { resolveBaseNameToWalletAddress, loading, resolvedAddress } =
+    useResolveBaseNameToWalletAddress();
 
   const intiateMpesaPayment = api.walletBuy.intiateWalletBuyOrder.useMutation({
     onSettled: (data, _, variables) => {
@@ -113,14 +124,19 @@ export default function WalletBuyOrder({ orderId }: WalletOderProps) {
 
   function handleMakePayment() {
     if (
-      account?.address &&
+      (account?.address ?? resolvedAddress) &&
       mpesaPaymentNumber &&
       mpesaPaymentNumber.length === 10 &&
       (!isNaN(Number(mpesaPaymentNumber)) ||
         mpesaPaymentNumber.startsWith("01"))
     ) {
       intiateMpesaPayment.mutate({
-        walletAddress: account.address,
+        walletAddress:
+          walletType === "WALLET" && account?.address
+            ? account?.address
+            : walletType === "BASENAME" && resolvedAddress
+              ? resolvedAddress
+              : "",
         orderId: orderId,
         mpesaPaymentNumber: "254" + mpesaPaymentNumber.slice(1),
       });
@@ -131,6 +147,13 @@ export default function WalletBuyOrder({ orderId }: WalletOderProps) {
       });
     }
   }
+  const handleResolve = async () => {
+    await resolveBaseNameToWalletAddress({
+      chainId: 8453,
+      basename: basename ?? "",
+    });
+  };
+
   useEffect(() => {
     if (checkStkPaymentStatus.isLoading) {
       notifications.hide("payment-loading");
@@ -258,13 +281,13 @@ export default function WalletBuyOrder({ orderId }: WalletOderProps) {
                     <FcInfo />
                   </span>
                   <span className="">
-                    {connectionStatus === "connected"
+                    {connectionStatus === "connected" && walletType === "WALLET"
                       ? `${account?.address.substring(0, 6)} ... ${account?.address.substring(account.address.length - 6)}`
-                      : connectionStatus === "connecting"
-                        ? "Waiting"
-                        : connectionStatus === "disconnected"
-                          ? "Connect wallet"
-                          : "unknown wallet"}
+                      : walletType === "BASENAME" && resolvedAddress
+                        ? resolvedAddress.substring(0, 6) +
+                          " ... " +
+                          resolvedAddress.substring(resolvedAddress.length - 6)
+                        : ""}
                   </span>
                 </div>
               </Popover.Target>
@@ -291,7 +314,17 @@ export default function WalletBuyOrder({ orderId }: WalletOderProps) {
           </Accordion.Panel>
         </Accordion.Item>
       </Accordion>
-      {account?.address ? (
+      <SegmentedControl
+        value={walletType}
+        onChange={(value) => setWalletType(value as "WALLET" | "BASENAME")}
+        data={[
+          { label: "Wallet Address", value: "WALLET" },
+          { label: "Use Basename", value: "BASENAME" },
+        ]}
+      />
+
+      {(account?.address && walletType == "WALLET") ??
+      (walletType == "BASENAME" && resolvedAddress) ? (
         getOrderDetails.data?.stkMessage?.stkStatus ? (
           <div className=" flex  items-center justify-center">
             <p>A payment request was intiatiated for this order</p>
@@ -316,8 +349,27 @@ export default function WalletBuyOrder({ orderId }: WalletOderProps) {
               "Make Payment"}
           </Button>
         )
-      ) : (
+      ) : walletType === "WALLET" ? (
         <ConnectWalletButton buttonText="Connect Wallet" />
+      ) : (
+        <TextInput
+          value={basename}
+          onChange={(e) => setBasename(e.target.value)}
+          label={<p className=" text-xs">Basename</p>}
+          description={resolvedAddress ?? undefined}
+          placeholder="johndoe.base.eth"
+          size="lg"
+          rightSection={
+            <ActionIcon
+              onClick={() => {
+                void handleResolve();
+              }}
+              loading={loading}
+            >
+              <TbWorldSearch className=" cursor-pointer text-2xl" />
+            </ActionIcon>
+          }
+        />
       )}
     </Paper>
   );

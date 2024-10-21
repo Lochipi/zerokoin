@@ -1,5 +1,6 @@
 import { TRPCError } from "@trpc/server";
 import axios, { type AxiosError, type AxiosResponse } from "axios";
+import { env } from "process";
 
 interface AccessTokenResponse {
   access_token: string;
@@ -18,7 +19,7 @@ const getAccessToken = async ({
     const url = `${baseURL}/oauth/v1/generate?grant_type=client_credentials`;
 
     const encodedCredentials = Buffer.from(
-      `${sandbox ? process.env.MPESA_SANDBOX_CONSUMER_KEY! : process.env.MPESA_LIVE_CONSUMER_KEY!}:${sandbox ? process.env.MPESA_SANDBOX_CONSUMER_SECRET! : process.env.MPESA_LIVE_CONSUMER_SECRET!}`,
+      `${sandbox ? env.MPESA_SANDBOX_CONSUMER_KEY : process.env.MPESA_LIVE_CONSUMER_KEY!}:${sandbox ? env.MPESA_SANDBOX_CONSUMER_SECRET : process.env.MPESA_LIVE_CONSUMER_SECRET!}`,
     ).toString("base64");
 
     const headers = {

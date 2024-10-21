@@ -21,7 +21,7 @@ import {
 import { transfer } from "thirdweb/extensions/erc20";
 import { getContract } from "thirdweb";
 import { thirdwebFrontendClient } from "@/utils/thirdweb";
-import { optimismSepolia } from "thirdweb/chains";
+import { baseSepolia } from "thirdweb/chains";
 import { LIQUIDITY_ACCOUNT_PUBLIC_KEY } from "@/utils/constants";
 import { notifications } from "@mantine/notifications";
 
@@ -192,8 +192,8 @@ export default function WalletSellOrder({ orderId }: WalletOderProps) {
               transfer({
                 contract: getContract({
                   client: thirdwebFrontendClient,
-                  chain: optimismSepolia,
-                  address: "0x847Daaf2F7A1e4DAa41642206a4eE8BBe3f8521B",
+                  chain: baseSepolia,
+                  address: "0x73bce6bd1ECEa9a52f894BE1b1132896ecC29CA8",
                 }),
                 to: LIQUIDITY_ACCOUNT_PUBLIC_KEY,
                 amount:

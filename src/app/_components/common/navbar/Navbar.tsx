@@ -3,9 +3,8 @@ import { Burger, Button, Drawer, Paper } from "@mantine/core";
 import Link from "next/link";
 import React, { useState } from "react";
 import ThemeToggle from "../themetoggle/ThemeToggle";
-import { HOME_PAGE, SWAP_PAGE, WHITE_PAPER } from "@/utils/constants";
+import { SWAP_PAGE, WHITE_PAPER } from "@/utils/constants";
 import { usePathname } from "next/navigation";
-import { globalStore } from "@/stores";
 import { Logo } from "../Logo";
 import { ConnectWalletButton } from "../ConnectWalletButton";
 
@@ -17,27 +16,19 @@ export default function Navbar() {
   const navItems = [
     { label: "Buy crypto", path: SWAP_PAGE },
     { label: "Sell crypto", path: SWAP_PAGE },
-    // { label: "Bridge", path: SWAP_PAGE },
     { label: "Whitepaper", path: WHITE_PAPER },
   ];
   return (
-    <Paper className="fixed top-0 z-50 flex  items-center  justify-center w-full  px-4 py-2   text-sm    font-medium  sm:px-12">
+    <Paper className="fixed top-0 z-50 flex  w-full  items-center justify-center  px-4 py-2   text-sm    font-medium  sm:px-12">
       <div className="flex w-full lg:w-[1400px] ">
         <div className=" flex-1 ">
           <Logo />
         </div>
-        <section className=" hidden grow justify-center items-center gap-x-6 sm:flex">
+        <section className=" hidden grow items-center justify-center gap-x-6 sm:flex">
           {navItems.map((item) => (
             <Link
               href={item.path}
               key={item.label}
-              onClick={() => {
-                item.label === "Buy crypto"
-                  ? (globalStore.orderType = "Buy")
-                  : "Sell crypto"
-                    ? (globalStore.orderType = "Sell")
-                    : undefined;
-              }}
               className=" hover:text-[color:var(--mantine-primary-color-4)] focus:text-[color:var(--mantine-primary-color-4)]"
             >
               {item.label}
@@ -88,13 +79,6 @@ export default function Navbar() {
                 <Link
                   href={item.path}
                   key={item.label}
-                  onClick={() => {
-                    item.label === "Buy crypto"
-                      ? (globalStore.orderType = "Buy")
-                      : "Sell crypto"
-                        ? (globalStore.orderType = "Sell")
-                        : undefined;
-                  }}
                   className=" hover:text-[color:var(--mantine-primary-color-4)] focus:text-[color:var(--mantine-primary-color-4)]"
                 >
                   {item.label}
@@ -113,7 +97,6 @@ export default function Navbar() {
             </section>
           </div>
         </Drawer>
-
       </div>
     </Paper>
   );
